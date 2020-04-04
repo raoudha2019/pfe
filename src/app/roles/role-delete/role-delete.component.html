@@ -1,0 +1,21 @@
+
+
+<div class="card-icon">
+  
+            <mat-icon class="color1" style="color:white ;">delete_sweep</mat-icon>
+
+          </div>
+          <button mat-icon-button style="margin-right: 10px;" (click)="onNoClick()" >
+            <mat-icon >cancel</mat-icon>
+            </button> 
+          
+  <h5>
+  {{'Êtes-vous sûr de vouloir supprimer le role'|translate}} {{local_data.name}}?</h5>
+  
+
+<div mat-dialog-actions >
+  <button type="submit" class="btn" (click)= "delete()" >{{'Oui'| translate}}</button>
+
+  <button type="submit" class="btn" (click)="onNoClick()" >{{'Non'|translate}}</button>
+  
+</div>

@@ -1,0 +1,76 @@
+<div class="card">
+  <mat-card class="aa" style=" margin: 0 20px;margin-top: -20px;">
+    <ul fxLayoutGap="75%">
+      <span style="  font-size: 17px;">
+        <strong style="color: white;">{{ 'Ajouter Role' | translate }}</strong>
+
+      </span>
+      <button mat-icon-button style="margin-left: 450px; " (click)="closeDialog1()">
+        <mat-icon style="color: white;">cancel</mat-icon>
+      </button>
+    </ul>
+  </mat-card>
+
+  <div class="card-body">
+  <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+    <div mat-dialog-content >
+      <div class="row">
+        <div class="col " style="margin-right: 20px;">
+          <mat-form-field>
+            <mat-label>Role</mat-label>
+            <input formControlName="name" matInput placeholder="Role" [formControl]="nomControl" [(ngModel)]="name"
+              required>
+
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input formControlName="description" matInput placeholder="Description" [formControl]="descriptionControl"
+              [(ngModel)]="description" required>
+            <mat-error *ngIf="descriptionControl.hasError('required')">
+              {{ 'Description est requis' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="col" style="    margin-right: -9px">
+        <mat-form-field *ngFor="let action of actions; let i = index">
+          <mat-label>{{ action.name | translate }}</mat-label>
+
+          <mat-select [formControl]="PermissionControl" multiple>
+
+            <!--	<app-select-check-all [model]="form.get('project')" [values]="projects">
+          </app-select-check-all>-->
+            <mat-option *ngFor="let permission of action.permission;let j = index" #matOption
+              (click)="check($event,matOption.selected,i,j)" [value]="permission.id">
+              {{ permission.name | translate }}
+            </mat-option>
+            <mat-option>All</mat-option>
+
+          </mat-select>
+        </mat-form-field>
+    </div>
+      </div>
+    </div> 
+        <div class="row">
+          <div class="col order-last">
+          
+          </div>
+          
+          <div class="col">
+            <div mat-dialog-actions style="    flex-wrap: nowrap;">
+              <button type="submit" class="btn">{{'Ajouter'|translate}}</button>
+              <button type="submit" class="btn" (click)="closeDialog1()">{{'Annuler'|translate}}</button>
+            
+            </div>
+          </div>
+          <div class="col order-first">
+         
+          </div>
+        </div>
+      </div>
+    </form>
+    </div> 
+  
+
+</div>

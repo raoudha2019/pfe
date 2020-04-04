@@ -1,0 +1,73 @@
+  <div class="card">
+      <mat-card class="aa" style=" margin: 0 20px;margin-top: -20px; ">
+        <ul fxLayoutGap="75%" >
+        <span style="  font-size: 17px;">
+         <strong style="color: white;">{{'Modifier Role'|translate}}</strong> 
+        </span>
+        <button mat-icon-button style="margin-left: 455px;" (click)="onNoClick()" >
+          <mat-icon  style="color: white;">cancel</mat-icon>
+          </button>
+        </ul>
+      </mat-card>   
+   
+      <div class="card-body">
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+        <div mat-dialog-content>
+   <div class="row">
+    <div class="col " style="margin-right: 20px;">
+        <mat-form-field >
+
+            <mat-label>Role</mat-label>          
+            <input  formControlName="name" matInput placeholder="Role" [(ngModel)]="local_data.name" readonly >
+      <!--     <mat-error *ngIf="nomControl.hasError('required')">
+               {{'Role est requis'|translate}}
+          </mat-error>--> 
+          </mat-form-field>  
+          <mat-form-field>
+            <mat-label>{{'Description'|translate}}</mat-label>
+               <input formControlName="description" matInput  placeholder="Description" [formControl]="descriptionControl" [(ngModel)]="local_data.description" required>
+               <mat-error *ngIf="descriptionControl.hasError('required')">
+                   {{'Description est requis'|translate}}
+              </mat-error>
+          </mat-form-field> 
+    </div>
+    <div class="col" style="    margin-right: -9px">
+        <mat-form-field *ngFor="let action of actions; let i = index"  >
+          <mat-label>{{ action.name |translate }}</mat-label>
+          <mat-select   multiple >
+         <!--   {{'Selectionner tout'|translate}}
+            <div class="material-switch pull-right">
+              <input id="sel{{action.id}}" type="checkbox" name="" (change)="checkAll($event,index)" [checked]="check[index]"
+              />
+              <label for="sel{{action.id}}" class="label-info"></label>
+            </div>
+            <br/>-->
+            <mat-option *ngFor="let permission of action.permission;let j = index" 
+            #matOption (click)="check($event,matOption.selected,i,j)" [value]="permission.id" >
+              {{ permission.name |translate }}
+            </mat-option>    
+            <mat-option  #matOption (click)="checkAll($event,index,j)" [value]="0" >All</mat-option>    
+          </mat-select>    
+        </mat-form-field>
+    </div>
+   </div> 
+            </div>
+            
+            
+              <div class="row" style="margin-block-end: 10px;">
+                <div class="col order-last">
+                </div>
+                <div class="col">
+                  <div mat-dialog-actions  style="    flex-wrap: nowrap;">
+                    <button type="submit" class="btn" >{{'Modifier'|translate}}</button>
+                    <button type="submit" class="btn" (click) ="closeDialog()">{{'Annuler'|translate}}</button>
+                  </div>
+                </div>
+                <div class="col order-first">
+                </div>
+              </div>
+            </div>
+            </form>
+            </div>
+  </div>

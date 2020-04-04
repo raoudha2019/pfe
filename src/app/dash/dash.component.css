@@ -1,0 +1,32 @@
+.card{
+    display: inline-flex;
+   
+
+}
+.dash{
+    margin-top: 20px;
+    margin-left: 50px;
+}
+.mat-toolbar {
+   background-color: #f0b680 ;
+   border-radius:10px;
+   height: 50px;
+}
+
+.btn, .btn.btn-default, .mat-button.btn, .mat-button.btn.btn-default, .mat-raised-button.btn, .mat-raised-button.btn.btn-default, .mat-raised-button.btn:not([class*=mat-elevation-z]), .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-default {
+  
+    color: #fff;
+    background-color: #999;
+    border-color: #999;
+    box-shadow: 0 2px 2px 0 hsla(0,0%,60%,.14), 0 3px 1px -2px hsla(0,0%,60%,.2), 0 1px 5px 0 hsla(0,0%,60%,.12);
+
+    background-color: #ff9800;
+    border-color: #ff9800;
+    box-shadow: 0 2px 2px 0 rgba(255,152,0,.14), 0 3px 1px -2px rgba(255,152,0,.2), 0 1px 5px 0 rgba(255,152,0,.12);
+    text-align: center;
+    width: 250px;
+    height: 40px;
+}
+
+
+

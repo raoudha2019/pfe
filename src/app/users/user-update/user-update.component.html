@@ -1,0 +1,80 @@
+<div class="card">
+  
+    <div style="padding-left: 630px"> 
+      </div>
+   
+      <mat-card style=" margin: 0 20px;margin-top: -20px; background: linear-gradient(60deg,#f5b14c,#fb8c00);">
+
+        <ul fxLayoutGap="75%" >
+        <span style="  font-size: 17px;">
+         <strong style="color: white;">{{ 'Modifier Utilisateur' |translate }}</strong> 
+        </span>
+        <button mat-icon-button style="margin-left: 380px;" (click)="onNoClick()" >
+          <mat-icon  style="color: white;">cancel</mat-icon>
+          </button>
+          
+        </ul>
+      </mat-card>   
+     
+      <form [formGroup]="messageForm" (ngSubmit)="onSubmit()" style="margin-top: 20px;">
+        <div mat-dialog-content>
+        
+         <tr>
+           <td style="width: 40%;">
+             <mat-form-field >
+               <mat-label>{{ 'Firstname' |translate }}</mat-label>          
+               <input  formControlName="firstname" matInput  placeholder="Firstname"  [(ngModel)]="local_data.firstname" required>
+               <mat-error *ngIf="firstnameControl.hasError('required')">
+                  {{ 'Firstname est requis' |translate }}
+             </mat-error>
+             </mat-form-field>                           
+      
+          
+            <mat-form-field>
+             <mat-label>{{ 'Lastname' |translate }}</mat-label>
+               <input formControlName="lastname" matInput  placeholder="Lastname"  [(ngModel)]="local_data.lastname" required>
+               <mat-error *ngIf="lastnameControl.hasError('required')">
+                    {{ 'Lastname est requis'|translate }}
+              </mat-error>
+          </mat-form-field> 
+          <mat-form-field>
+            <mat-label>{{'Email'|translate}}</mat-label>
+              <input formControlName="email" matInput  placeholder="Email"  [(ngModel)]="local_data.email" required>
+              <mat-error *ngIf="emailControl.hasError('required')">
+                   {{ 'Email est requis' |translate}}
+             </mat-error>
+         </mat-form-field> 
+          <mat-form-field>
+            <mat-label>{{ 'Password' |translate}}</mat-label>
+            <input formControlName="password" matInput placeholder="Password" [(ngModel)]="local_data.password" [type]="hide ? 'password' : 'text'"
+              [formControl]="passwordControl" [(ngModel)]="password" required>
+            <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="passwordControl.hasError('required')">
+              {{ 'Password est requis'|translate }}
+            </mat-error>
+          </mat-form-field>  
+         <mat-form-field style="margin-left: 0px;"  >
+          <mat-label>{{ 'Role' }} </mat-label>
+          <mat-select  [formControl]="RoleControl" [(ngModel)]="selectedValue"  >
+             
+            <mat-option *ngFor="let role of roles ;let j = index" [value]="role"    >
+              {{role.name |translate}}
+            </mat-option>  
+</mat-select>  
+          <mat-error *ngIf="RoleControl.hasError('required')">
+           {{ 'Role est requis' |translate }}
+        </mat-error>   
+        
+        </mat-form-field>
+        </td>
+      
+      </tr>
+      </div> 
+      <div mat-dialog-actions>
+        <button type="submit" class="btn">{{'Modifier' |translate}}</button>
+      
+        <button type="submit" class="btn" (click)="onNoClick()">{{'Annuler'|translate}}</button>
+      
+      </div>
+      </form>
+  </div>
