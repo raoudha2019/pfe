@@ -9,6 +9,7 @@ import { Permission } from '../../model/Permission';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DialogComponent } from '../../dialog/dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBarComponent } from 'src/app/mat-snack-bar/mat-snack-bar.component';
 
 
 export interface RoleData {
@@ -55,7 +56,7 @@ export class RoleEditComponent implements OnInit {
     Validators.nullValidator,
   ]);
   dialog: any;
-  constructor(public translate: TranslateService,private route: ActivatedRoute,private _router: Router,
+  constructor(public translate: TranslateService,private route: ActivatedRoute,private _router: Router,private snackBar: MatSnackBarComponent,
     public dialogRef: MatDialogRef<RoleEditComponent>,
 
     @Optional() @Inject(MAT_DIALOG_DATA) public data: RoleData,
@@ -203,13 +204,15 @@ checkAll(event, i,j) {
     else{
     this.roleservice.UpdateRole(this.role,this.local_data.id).subscribe((role) => {
       this.dialogRef.close();
-     
-      alert("successful operation!")
+      this.snackBar.openSnackBar("done!",'Close','red-snackbar');
+
+    //  alert("successful operation!")
     },     
     (error) => {
       console.log("ERROR"+JSON.stringify(error))
-      
-      alert(error._body)
+      this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+
+      //alert(error._body)
     });
   }
  }

@@ -9,6 +9,7 @@ import { Permission } from '../../model/Permission';
 import { Utilisateur} from '../../model/Utilisateur';
 import { UtilisateurService } from '../../service/utilisateur.service';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBarComponent } from 'src/app/mat-snack-bar/mat-snack-bar.component';
 
 
 export interface DialogData {
@@ -33,7 +34,12 @@ export class AddUserComponent implements OnInit {
   searchUserForm: FormGroup;
   actions: Action[];
   selectedValue: number;
+   usernameControl = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
 
+  ]);
+ 
   firstnameControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
@@ -65,12 +71,14 @@ export class AddUserComponent implements OnInit {
 
   ]);
   hide = true;
-  constructor( private utilisateurService: UtilisateurService,public translate: TranslateService,private _snackBar: MatSnackBar,
+  constructor( private utilisateurService: UtilisateurService,public translate: TranslateService,private snackBar: MatSnackBarComponent,
     public dialogRef: MatDialogRef<AddUserComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData,private actionservice: ActionService,
     private roleservice: RoleService,private fb: FormBuilder,private formBuilder: FormBuilder) 
     {
       this.messageForm = this.formBuilder.group({
+        username: ['', Validators.required],
+
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],
         email: ['', Validators.required],
@@ -104,11 +112,7 @@ export class AddUserComponent implements OnInit {
       this.translate.use(language);  
     } 
 
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action, {
-        duration: 2000,
-      });
-    }
+    
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -138,6 +142,7 @@ export class AddUserComponent implements OnInit {
     
      //******************** button click **********************/
      onSubmit() {
+      this.util.username=this.messageForm.value.username;
 
       this.util.firstname=this.messageForm.value.firstname;
       this.util.lastname=this.messageForm.value.lastname;
@@ -152,13 +157,17 @@ export class AddUserComponent implements OnInit {
       this.utilisateurService.AddUser(this.messageForm.value,this.selectedValue).subscribe(data=>{
        
           this.dialogRef.close();
-          alert("done")
+          this.snackBar.openSnackBar("done!",'Close','red-snackbar');
+
+          //  alert("done")
          
     },
 
     (error) => {
       console.log("ERROR"+JSON.stringify(error))
-      alert(error._body)
+      this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+
+      //alert(error._body)
     });
   }
 

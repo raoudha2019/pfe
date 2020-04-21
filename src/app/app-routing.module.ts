@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LayoutComponent} from './layout/layout.component'
 import { DashboardComponent } from './roles/role-list/dashboard.component';
-
 import { RoleDeleteComponent } from './roles/role-delete/role-delete.component';
 import { RoleConsulterComponent } from './roles/role-consulter/role-consulter.component';
 import { RoleAddComponent } from './roles/role-add/role-add.component';
@@ -15,35 +14,45 @@ import {AddUserComponent} from './users/user-add/add-user.component';
 import {UserDeleteComponent} from './users/user-delete/user-delete.component';
 import {UserUpdateComponent} from './users/user-update/user-update.component';
 import {UserConsulterComponent} from './users/user-consulter/user-consulter.component';
-
+import { AuthGuard } from './service/auth.guard';
+import{QcmComponent} from './qcm/qcm.component';
+import {QcmAddComponent} from './qcm/qcm-add/qcm-add.component';
 import { from } from 'rxjs';
 const routes: Routes = [
-  {path:'',redirectTo: 'login', pathMatch:'full'},
-
-  {path:'login', component: LoginComponent},
-
-  
+  {path:'',redirectTo: 'Login', pathMatch:'full'},
+  {path:'Login', component: LoginComponent},
+ 
   { path: '',
     component: LayoutComponent,
-    children: [
+    children: [   
+     // {path:'Login', component: LoginComponent},
   {path:'delete-role' , component:RoleDeleteComponent },
-  {path:'consulter-role' , component:RoleConsulterComponent },
-  {path:'add-role' , component:RoleAddComponent },
-  {path:'edit-role' , component:RoleEditComponent },
-  {path:'dashboard',component:DashboardComponent},
-  {path:'User',component:UserComponent},
+
+  {path:'consulter-role' , component:RoleConsulterComponent},
+
+  {path:'add-role' , component:RoleAddComponent 
+},
+
+  {path:'edit-role' , component:RoleEditComponent 
+},
+
+  {path:'dashboard',component:DashboardComponent, },
+ 
+  {path:'User',component:UserComponent  },
+ 
   {path:'dash', component: DashComponent},
   {path:'dialog', component: DialogComponent},
-  {path:'add',component:AddUserComponent},
-  {path:'del',component:UserDeleteComponent},
-  {path:'update',component:UserUpdateComponent},
-  {path:'consult',component:UserConsulterComponent},
+  {path:'add', component:AddUserComponent },
+  {path:'del',component:UserDeleteComponent },
+  {path:'update',component:UserUpdateComponent },
+  {path:'consult',component:UserConsulterComponent },
+ 
+ 
+  {path:'qcm',component:  QcmComponent},
+  {path:'qcmAdd',component:QcmAddComponent  },
 
-]
 
-    } 
-    
-];
+]} ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

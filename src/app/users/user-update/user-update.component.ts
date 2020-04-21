@@ -10,6 +10,7 @@ import { UtilisateurService } from '../../service/utilisateur.service';
 import { Action } from '../../model/action';
 import { Permission } from '../../model/permission';
 import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBarComponent } from 'src/app/mat-snack-bar/mat-snack-bar.component';
 
 export interface RoleData {
   animal: string;
@@ -34,7 +35,11 @@ export class UserUpdateComponent implements OnInit {
   
   utii: Utilisateur = new Utilisateur();
  
+  usernameControl = new FormControl('', [
+    Validators.required,
+    Validators.nullValidator,
 
+  ]);
  firstnameControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
@@ -69,13 +74,14 @@ export class UserUpdateComponent implements OnInit {
   ]);
   hide = true;
 constructor( private utilisateurService: UtilisateurService,
-  public translate: TranslateService,private _snackBar: MatSnackBar,
+  public translate: TranslateService,private _snackBar: MatSnackBar,private snackBar: MatSnackBarComponent,
   public dialogRef: MatDialogRef<UserUpdateComponent>,
   @Inject(MAT_DIALOG_DATA) public data: RoleData,private utilisateurservice: UtilisateurService ,
   private roleservice: RoleService,
   private fb: FormBuilder,private formBuilder: FormBuilder) 
 {
       this.messageForm = this.formBuilder.group({
+        username: ['', Validators.required],
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],
         email: ['', Validators.required],
@@ -121,11 +127,13 @@ constructor( private utilisateurService: UtilisateurService,
   onSubmit() {
      
    this.utii.role= this.selectedValue;
+   this.utii.username=this.messageForm.value.username;
+
    this.utii.firstname=this.messageForm.value.firstname;
     this.utii.lastname=this.messageForm.value.lastname;
     this.utii.email=this.messageForm.value.email;
     this.utii.password=this.messageForm.value.password;
-  //  this.utii.role=this.messageForm.value.Role;
+   this.utii.role=this.messageForm.value.Role;
       if (this.messageForm.invalid ||this.role == null) {
       //  alert("veuillez remplir1258 les champs obligatoires");
            console.log("********")        }
@@ -133,18 +141,23 @@ constructor( private utilisateurService: UtilisateurService,
     this.utilisateurService.UpdateUsers(this.utii,this.local_data.id).subscribe((role) => {
       
       this.dialogRef.close();
-      alert("done!")
+      this.snackBar.openSnackBar("done!",'Close','red-snackbar');
+
+      // alert("done!")
      // alert("vorte utilisateur est bien modifié!");
 
     },     
     (error) => {
       console.log("ERROR"+JSON.stringify(error))
-      alert(error._body);    });
+    //  alert(error._body);   
+    this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+
+    });
   }
   ngOnInit() {
     //**********getRoles *************** */
     this.roleservice.getAllRoles().subscribe(data => {
-     this.roles = data;
+     //this.roles = data;
  }) 
  // ********* searchform ************ 
  this.searchUserForm = this.fb.group({

@@ -5,15 +5,8 @@ import { Observable} from 'rxjs'
 import  'rxjs/add/operator/map';
 import{Permission} from '../model/Permission';
 
-
-
-const headers={
-  headers:new HttpHeaders({
-    'content-Type':'application/json'
-  })
-}
-var allPermissions:string='http://localhost:8080/Role/allRoles';
-var DeletePerm:string='http://localhost:8080/Permissions/deleteperm/';
+var allPermissions:string='http://localhost:9000/Role/allRoles';
+var DeletePerm:string='http://localhost:9000/Permissions/deleteperm/';
 
 @Injectable({
   providedIn: 'root'

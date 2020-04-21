@@ -5,6 +5,9 @@ import {Permission} from '../../model/Permission';
 import { PermissionService } from '../../service/permission.service';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthenticationService } from '../../service/authentification.service';
+import { ActivatedRoute } from '@angular/router';
+import { UtilisateurService } from 'src/app/service/utilisateur.service';
+import { Utilisateur } from 'src/app/model/Utilisateur';
 
 export interface RoleData {
   name: string;
@@ -20,7 +23,11 @@ export interface RoleData {
 export class UserConsulterComponent implements OnInit {
 
   local_data:any;
-  constructor(private authenticationService: AuthenticationService,public translate: TranslateService, public dialogRef: MatDialogRef<UserConsulterComponent>,
+  utilisateur: Utilisateur = new Utilisateur();
+  id: number;
+  constructor(private authenticationService: AuthenticationService,private route: ActivatedRoute, 
+    private utilisateurService: UtilisateurService,
+    public translate: TranslateService, public dialogRef: MatDialogRef<UserConsulterComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: RoleData) { 
       console.log(data);
       this.local_data = {...data};
@@ -40,11 +47,18 @@ export class UserConsulterComponent implements OnInit {
       this.translate.use(language);  
     } 
   ngOnInit() {
+   /* this.route.params.subscribe(params => {
+      this.id = +params['id']; // (+) converts string 'id' to a number
+
+      // In a real app: dispatch action to load the details here.
+      this.utilisateurService.GetUser(this.id).subscribe(
+        (utilisateur) => {
+
+          this.utilisateur = utilisateur;
+  });});*/
   }
   onNoClick(): void {
     this.dialogRef.close();
   }
-
-}
-
+  }
 

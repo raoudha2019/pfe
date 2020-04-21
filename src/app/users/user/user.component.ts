@@ -13,6 +13,8 @@ import { UserUpdateComponent } from '../user-update/user-update.component';
 import { UserConsulterComponent } from '../user-consulter/user-consulter.component';
 import { TranslateService } from '@ngx-translate/core';
 
+//import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+
 export interface RoleData {
   name: string;
   id: number;
@@ -24,7 +26,9 @@ export interface RoleData {
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
+
   roles: Role[];
   animal: string;
   name: string;
@@ -52,16 +56,14 @@ export class UserComponent implements OnInit {
         localStorage.setItem('locale', 'en');  
         translate.setDefaultLang('en');  
       } 
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
+      //this.authenticationService.currentUser.subscribe(x => this.currentUser = x);
      }
-  
-  
+
      changeLang(language: string) {  
       localStorage.setItem('locale', language);  
       this.translate.use(language);  
     } 
  
-
   ngOnInit() {
     this.refresh();
     this.utilisateurService.getAllUsers().subscribe(data => {
@@ -97,10 +99,8 @@ export class UserComponent implements OnInit {
     });
  
     dialogRef.afterClosed().subscribe(result => {
-      
       this.refresh();
-    });
-  }
+    });  }
 
   openDialoge(action,obj) {
     obj.action = action;
@@ -118,13 +118,11 @@ export class UserComponent implements OnInit {
   openDialogeConsulter(action,obj) {
     obj.action = action;
     const dialogRef = this.dialog.open(UserConsulterComponent, {
-     
+
       width: '750px',
       data:obj
     });
- 
     dialogRef.afterClosed().subscribe(result => {
-      
       this.refresh();
     });
   }

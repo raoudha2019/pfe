@@ -52,9 +52,13 @@ import { UserConsulterComponent } from './users/user-consulter/user-consulter.co
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {SelectCheckAllComponent}from './roles/role-add/select-check-all.component';
+import { PermissionService } from './service/permission.service';
+import { CookieService } from 'ngx-cookie-service';
+import { QcmComponent } from './qcm/qcm.component';
+import {QcmAddComponent} from './qcm/qcm-add/qcm-add.component'
 //import { PizzaPartyComponent } from './snack-bar-component-example-snack/snack-bar-component-example-snack.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material';
-
+import { MatSnackBarComponent } from './mat-snack-bar/mat-snack-bar.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18/', '.json');
 }
@@ -62,7 +66,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   declarations: [
     AppComponent,
     SelectCheckAllComponent,
-   
+    MatSnackBarComponent,
     LoginComponent,
     UserComponent,
     DashComponent,
@@ -72,9 +76,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserDeleteComponent,
     UserUpdateComponent,
     UserConsulterComponent,
+    MatSnackBarComponent,
+    QcmComponent,
+    QcmAddComponent
+
       
   ],
-  imports: [  HttpClientModule, 
+  imports: [  HttpClientModule, MatSnackBarModule,
     BrowserModule,RouterModule,FormsModule, ReactiveFormsModule,
     AppRoutingModule,LayoutModule,
     BrowserAnimationsModule,MatFormFieldModule,MatButtonModule,BrowserModule,
@@ -119,7 +127,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     })
   ],
-  providers: [],
+  providers: [MatSnackBarComponent,
+     ],
   exports: [],
   bootstrap: [AppComponent ]
 })

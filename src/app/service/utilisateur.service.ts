@@ -1,30 +1,34 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders,HttpClient } from '@angular/common/http';
 import {Http, Response, Headers, RequestOptions} from '@angular/http';
-import { Utilisateur } from '../model/Utilisateur';
+import { AuthenticationService } from './authentification.service';
+import {User} from '../model/User';
+import { from } from 'rxjs';
 const headers={
   headers:new HttpHeaders({
     'content-Type':'application/json'
   })
 }
-var allUsers:string='http://localhost:8080/Utilisateur/allPersons';
-var addUsers:string='http://localhost:8080/Utilisateur/addUser/';
-var DeleteUser:string='http://localhost:8080/Utilisateur/deleteUser/';
-var UpdateUserS:string='http://localhost:8080/Utilisateur/updateUser/';
 
-
+var allUsers:string='http://localhost:9000/Utilisateur/allPersons';
+var addUsers:string='http://localhost:9000/Utilisateur/addUser/';
+var DeleteUser:string='http://localhost:9000/Utilisateur/deleteUser/';
+var UpdateUserS:string='http://localhost:9000/Utilisateur/updateUser/';
+var GetUser:string='http://localhost:9000/Utilisateur/getPersonsByID/'
 @Injectable({
   providedIn: 'root'
 })
 export class UtilisateurService {
-  getAllPersons() {
+
+  constructor(public http: Http,private httpClient:HttpClient) { };
+  /*getAllPersons() {
     throw new Error("Method not implemented.");
-  }
-  utilisateurs: Utilisateur[];
-  constructor(public http: Http) { }
+  }*/
+ 
   getAllUsers()
   {
-        return this.http.get(allUsers).map((response:Response)=>response.json());        
+   
+       return this.http.get(allUsers).map((response:Response)=>response.json());        
   }
   AddUser(utilisateur,id: Number)
   {
@@ -38,4 +42,4 @@ export class UtilisateurService {
   {
       return this.http.put(UpdateUserS+id,utilisateur);
   }
-}
+} 

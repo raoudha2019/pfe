@@ -9,8 +9,8 @@ const headers={
     'content-Type':'application/json'
   })
 }
-var allActions:string='http://localhost:8080/PermissionGroup/allPermGroup';
-var ActionsPriv:string='http://localhost:8080/PermissionGroup/PermissionGroup/';
+var allActions:string='http://localhost:9000/PermissionGroup/allPermGroup';
+var ActionsPriv:string='http://localhost:9000/PermissionGroup/PermissionGroup/';
 
 @Injectable({
   providedIn: 'root'

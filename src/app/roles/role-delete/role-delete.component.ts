@@ -2,7 +2,8 @@ import { Component, OnInit, Inject, Optional } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { RoleService } from '../../service/Role.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import {MatSnackBarComponent} from '../../mat-snack-bar/mat-snack-bar.component';
+import { from } from 'rxjs';
 export interface RoleData {
   id: number;
 }
@@ -16,7 +17,7 @@ export class RoleDeleteComponent implements OnInit {
 
 
 
-  constructor(public translate: TranslateService,public dialogRef: MatDialogRef<RoleDeleteComponent>,
+  constructor(public translate: TranslateService,public dialogRef: MatDialogRef<RoleDeleteComponent>,private snackBar: MatSnackBarComponent,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: RoleData,private roleservice: RoleService) { 
       console.log(data);
       this.local_data = {...data};
@@ -44,13 +45,16 @@ export class RoleDeleteComponent implements OnInit {
   delete() {
     this.roleservice.DeleteRole(this.local_data.id).subscribe((role) => {
       this.dialogRef.close();
-    alert("vorte role est bien supprimé!");
+   // alert("vorte role est bien supprimé!");
+    this.snackBar.openSnackBar("done!",'Close','red-snackbar');
 
    
     },     
     (error) => {
       console.log("ERROR"+JSON.stringify(error))
-      alert(error._body)
+     // alert(error._body)
+     this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+
     });
   }
 

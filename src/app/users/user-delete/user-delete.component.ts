@@ -4,6 +4,7 @@ import { UtilisateurService } from '../../service/utilisateur.service';
 import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBarComponent } from 'src/app/mat-snack-bar/mat-snack-bar.component';
 
 export interface UserData {
   id: number;
@@ -19,7 +20,7 @@ export class UserDeleteComponent implements OnInit {
 
 
 
-  constructor(public dialogRef: MatDialogRef<UserDeleteComponent>,public translate: TranslateService,private _snackBar: MatSnackBar,
+  constructor(public dialogRef: MatDialogRef<UserDeleteComponent>,public translate: TranslateService,private snackBar: MatSnackBarComponent,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: UserData,private utilisateurService: UtilisateurService) { 
       console.log(data);
       this.local_data = {...data};
@@ -40,11 +41,7 @@ export class UserDeleteComponent implements OnInit {
       this.translate.use(language);  
     } 
 
-    openSnackBar(message: string, action: string) {
-      this._snackBar.open(message, action, {
-        duration: 2000,
-      });
-    }
+   
   ngOnInit() {
   }
   onNoClick(): void {
@@ -53,12 +50,14 @@ export class UserDeleteComponent implements OnInit {
   delete() {
     this.utilisateurService.DeleteUser(this.local_data.id).subscribe((utilisateur) => {
       this.dialogRef.close();
-    alert("vorte utilisateur est bien supprimé!");
+    //alert("vorte utilisateur est bien supprimé!");
+    this.snackBar.openSnackBar("done",'Close','red-snackbar');
 
    
     },     
     (error) => {
-     alert("votre suprresion n'est pas effectuée!");
+    // alert("votre suprresion n'est pas effectuée!");
+    this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
 
     });
   }

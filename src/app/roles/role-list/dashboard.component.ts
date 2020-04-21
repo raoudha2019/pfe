@@ -9,6 +9,7 @@ import { RoleConsulterComponent } from '../role-consulter/role-consulter.compone
 import { RoleEditComponent } from '../role-edit/role-edit.component'
 import { from } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 
 export interface RoleData {
   name: string;
@@ -96,11 +97,6 @@ export class DashboardComponent implements OnInit {
       this.refresh();
     });
   }
-
-
-
-
-
 
   openDialog(): void {
     const dialogRef = this.dialog.open(RoleAddComponent, {

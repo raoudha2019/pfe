@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ViewChild, ElementRef } from '@angular/core';
 import { AuthenticationService } from '../../service/authentification.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -10,11 +10,12 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class HeadersComponent implements OnInit {
 
-  @ViewChild('selectpicker', { static: true }) selectPicker: ElementRef;
+  @ViewChild('selectpicker',{static:true}) selectPicker: ElementRef;
 
   @Output() toggleSideBarForMe: EventEmitter<any> = new EventEmitter();
-  constructor(private router: Router, private authenticationService: AuthenticationService, public translate: TranslateService,
-  ) {
+  constructor(public translate: TranslateService,private router: Router,
+    private authenticationService: AuthenticationService) {
+    
     translate.addLangs(['en', 'fr']);
     if (localStorage.getItem('locale')) {
       const browserLang = localStorage.getItem('locale');
@@ -29,8 +30,8 @@ export class HeadersComponent implements OnInit {
     this.translate.use(language);
   }
   logout() {
-    this.authenticationService.logout();
-    this.router.navigate(['/login']);
+    this.authenticationService.logOut();
+    this.router.navigate(['/Login']);
   }
   ngOnInit() { }
   toggleSideBar() {

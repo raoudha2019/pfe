@@ -23,6 +23,9 @@ import { RoleEditComponent } from '../roles/role-edit/role-edit.component'
 import { from } from 'rxjs';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+//import { EventEmitterService } from '../service/event-emitter.service';
+//import { DataService } from '../service/dataservice';
+import { CookieService } from 'ngx-cookie-service';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18/', '.json');
 }
@@ -67,6 +70,11 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     })
    
     
-  ]
+  ],
+  providers: [
+    //EventEmitterService, DataService,CookieService,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }
+],
 })
 export class LayoutModule { }

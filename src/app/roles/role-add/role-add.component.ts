@@ -1,4 +1,10 @@
 import { Component, OnInit, Inject, ViewChild, ɵLOCALE_DATA, Optional } from '@angular/core';
+import {
+
+  MatSnackBarConfig,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA, MatOption, MatDialog, MatSnackBar, } from '@angular/material';
 import { Validators, FormControl, FormGroup, FormBuilder, NgModel } from '@angular/forms';
 import { ActionService } from '../../service/action.service';
@@ -10,7 +16,7 @@ import { DialogComponent } from '../../dialog/dialog.component';
 import { Local } from 'protractor/built/driverProviders';
 import { TranslateService } from '@ngx-translate/core';
 import { from } from 'rxjs';
-
+import {MatSnackBarComponent} from '../../mat-snack-bar/mat-snack-bar.component';
 export interface DialogData {
   name: string;
   id: number;
@@ -27,6 +33,11 @@ export interface DialogData {
   styleUrls: ['./role-add.component.css']
 })
 export class RoleAddComponent implements OnInit {
+
+  message: string = 'Snack Bar opened.';
+  actionButtonLabel: string = 'Retry';
+  action: boolean = true;
+
   messageForm: FormGroup;
   submitted = false;
   success = false;
@@ -61,11 +72,11 @@ export class RoleAddComponent implements OnInit {
 
   
 
-  constructor(public dialog: MatDialog,public translate: TranslateService,private _snackBar: MatSnackBar,
+  constructor(public dialog: MatDialog,public translate: TranslateService,
     public dialogRef: MatDialogRef<RoleAddComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA)
      public data: DialogData,private actionservice: ActionService,
-     private roleservice: RoleService,private fb: FormBuilder,
+     private roleservice: RoleService,private fb: FormBuilder,private snackBar: MatSnackBarComponent,
      private formBuilder: FormBuilder) 
 
     {
@@ -97,12 +108,12 @@ export class RoleAddComponent implements OnInit {
       localStorage.setItem('locale', language);  
       this.translate.use(language);  
     } 
-    openSnackBar(message: string, action: string) {
+   /* openSnackBar(message: string, action: string) {
       this._snackBar.open(message, action, {
         duration: 2000,
       });
     }
-
+*/
     selectAll(select: NgModel, values, array) {
       select.update.emit(values); 
     }
@@ -170,20 +181,24 @@ export class RoleAddComponent implements OnInit {
     } 
    
     
-console.log("aaaaa");  
+    console.log("aaaaa"); 
    this.roleservice.addRole(this.role).subscribe((role) => {
       this.dialogRef.close();
     // console.log("done")
-     alert("successful operation!");
+    // alert("successful operation!");
+    this.snackBar.openSnackBar("done!",'Close','red-snackbar');
+
     },     
     (error) => {
       console.log("ERROR"+JSON.stringify(error))
-     alert(error._body)
+    // alert(error._body)
    // alert(error._body['message'])
-      
+   this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+
     });
-  
+    
 }
+
 
   closeDialog1(){
     this.dialogRef.close({event:'Cancel'});

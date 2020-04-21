@@ -21,6 +21,15 @@
         
          <tr>
            <td style="width: 40%;">
+            <mat-form-field>
+              <mat-label>{{ 'Username' |translate}}</mat-label>
+              <input formControlName="username" matInput placeholder="Username" [formControl]="usernameControl" [(ngModel)]="local_data.username"
+                [(ngModel)]="username" required>
+              <mat-error *ngIf="usernameControl.hasError('required')">
+                {{ 'Username est requis' |translate }}
+              </mat-error>
+            </mat-form-field>
+
              <mat-form-field >
                <mat-label>{{ 'Firstname' |translate }}</mat-label>          
                <input  formControlName="firstname" matInput  placeholder="Firstname"  [(ngModel)]="local_data.firstname" required>

@@ -6,7 +6,6 @@ import {AddUserComponent} from './user-add/add-user.component';
 import {UserComponent} from './user/user.component';
 import { from } from 'rxjs';
 
-
 @NgModule({
   declarations: [],
   imports: [
