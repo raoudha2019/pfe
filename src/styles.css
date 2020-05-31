@@ -1,7 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 
+.tab {
+  margin-left: 80px;
+  margin-right: 80px;
+  margin-bottom: 120px;
+  margin-top: 0px;
 
+
+}
+.bb {
+   
+  position: absolute; 
+  margin-left: 570px; 
+  margin-top: 17px;
+}
 .aa{
     background: linear-gradient(60deg,#f5b14c,#fb8c00);
    

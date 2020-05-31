@@ -1,0 +1,158 @@
+<div class="card">
+  
+    <div style="padding-left: 630px"> 
+      </div>
+      <mat-card style=" margin: 0 20px;margin-top: -20px; background: linear-gradient(60deg,#f5b14c,#fb8c00);">
+        <ul fxLayoutGap="75%" >
+        <span style="  font-size: 17px;">
+         <strong style="color: white;">{{ 'Modifier Qcm' |translate }}</strong> 
+        </span>
+        <button mat-icon-button style="margin-left: 380px;" (click)="onNoClick()" >
+          <mat-icon  style="color: white;">cancel</mat-icon>
+          </button>
+          
+        </ul>
+      </mat-card>   
+     
+      <div class="qcm" style="margin-left: 40px;">
+        <div class="row">
+          <div class="card" style="margin-top: 10px; margin-left: 5px;margin-right: 5px; width: 1000px;">
+            <form [formGroup]="messageForm"  >
+    
+            <div class="card" style="margin-top: 20px;margin-left: 5px;margin-right: 5px;">
+                <div class="card-body" style="height: 83px;">
+                  <div class="row">
+                    <div class="col">
+                      <mat-form-field style="margin-top: -30px; margin-left: 141px;">
+                           <mat-label>{{ 'Domain'| translate }} </mat-label>
+                           <mat-select [formControl]="domainControl" [(ngModel)]="questionData.selectedValue">
+                             <mat-option *ngFor="let domaine of domaines ;let j = index" [value]="domaine.id" >
+                               {{ domaine.name }}
+                             </mat-option>
+                           </mat-select>
+                           <mat-error *ngIf="domainControl.hasError('required')">
+                             {{ 'Domain is required' |translate }}
+                           </mat-error>
+                         </mat-form-field></div>
+                    <div class="col"><mat-form-field style="width: 200px; margin-top: -30px;">
+                      <mat-label >Title</mat-label>
+                      <input formControlName="title" matInput placeholder="Title" [formControl]="titleControl"  [(ngModel)]="local_data.title"
+                      [(ngModel)]="questionData.title" required>
+                      <mat-error *ngIf="titleControl.hasError('required')">
+                        {{ 'title is required' |translate }}
+                      </mat-error>
+                    </mat-form-field></div>
+                    </div>
+    
+                </div>
+                </div>
+             
+              <div style="margin-top: 15px;margin-right: 7px;margin-left: 7px;">
+                <tinymce formControlName="question" [(ngModel)]="questionData.question_body.question" [formControl]="questionControl" 
+                 [config]="config" [(ngModel)]="local_data.question_body.question"></tinymce>
+                <mat-error *ngIf="questionControl.hasError('required')">
+                  {{ 'Question is required' |translate }}
+                </mat-error>
+    <!--
+                  <ejs-richtexteditor  formControlName="question"  id='rteForm' #fromRTE height='250px' [formatter]='formatter'
+                  [formControl]="questionContr"
+              [toolbarSettings]='tools' [editorMode]='mode' (created)='onCreate()' [(ngModel)]="htmlContent">
+          </ejs-richtexteditor>
+          <mat-error *ngIf="questionContr.hasError('required')">
+            {{ 'Question est requis' |translate }}
+          </mat-error>
+    -->
+              </div>
+             
+             
+        
+            <div class="card" style="margin-top: 10px;margin-left: 5px;margin-right: 5px;">
+                <div class="card-body">
+    
+    
+                
+    
+                 <mat-label>Responses</mat-label>
+               
+                 <button (click)="addOptions()" style="margin-left: 20px;" ><i class="fa fa-plus" aria-hidden="true"  matTooltip="add Response"></i>
+                 </button>
+             
+             <div style="margin-left: 20px;">
+                 <div *ngFor="let response of questionData.question_body.responses ; let i = index">
+                 
+                  <div class="row" style="padding-top: 20px;" >
+                    <div class="col-sm">
+                      
+                     
+                      <mat-form-field class="test"    style="width: 470px;">
+                      <mat-label>Reponses {{i}} : </mat-label>  
+                  
+                      <input matInput  name="label{{i}}" [(ngModel)]="response.label" [ngModelOptions]="{standalone: true}" >
+                    </mat-form-field>
+                    </div>
+                    <div class="col-sm">
+    
+                   <mat-form-field >
+                     
+                    <mat-label> Simple code  : </mat-label> 
+                      <input matInput  name="code{{i}}" [(ngModel)]="response.code" [ngModelOptions]="{standalone: true}" >
+                      <i class="fa fa-code" matSuffix ></i>
+                    </mat-form-field>
+    
+    
+                 <!--    <li *ngIf="animal">
+                      Code: <i>{{animal}}</i>
+                    </li>
+                    <button (click)="openDialog()" style="margin-left: 20px;" ><i class="fa fa-code" aria-hidden="true" matTooltip="simple code"></i>
+                    </button>-->
+                   </div>
+                   <div class="col-sm">
+                     <mat-form-field style="    width: 100px;">
+                      <mat-label>Select an option</mat-label>
+                      <mat-select disableRipple   [(ngModel)]="response.correct" [ngModelOptions]="{standalone: true}">
+                        <mat-option value="true">True</mat-option>
+                        <mat-option value="false">False</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                      <button (click)="removePhone(i)" style=" margin-left: 20px;
+                      margin-top: 14px;"><i class="fa fa-trash" aria-hidden="true" matTooltip="delete" ></i>
+                    </button>
+                  </div>
+                 
+                
+                </div>
+              </div>
+            </div>
+                <br>
+                <br> 
+                 
+                </div>
+              </div>
+    
+             
+            
+    
+    
+    
+          <!-- 
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col-5">
+                  <div mat-dialog-actions
+     style="flex-wrap: nowrap; margin-left: 60px;margin-top: 7px; margin-bottom: 7px;">
+                    <button class="btn" (click)="openDialog1()" 
+                     cdkFocusInitial>{{'Preview' |translate}}</button>
+                    <button class="btn" (click)=" addQ()">{{'Ajouter'|translate}}</button>
+    
+                    <button class="btn" type="reset" ejs-button (click)="messageForm.reset()">{{'Annuler'|translate}}</button>
+                  </div>
+                </div>
+                <div class="col">
+                </div>
+              </div>-->  
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>

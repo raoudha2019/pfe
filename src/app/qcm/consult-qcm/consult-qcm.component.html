@@ -1,0 +1,119 @@
+<div class="card">
+  
+    <div style="padding-left: 630px">
+      
+    </div>
+    <mat-card class="aa" style=" margin: 0 20px;margin-top: -20px;">
+      <ul fxLayoutGap="75%" >
+      <span style="  font-size: 17px;">
+       <strong style="color: white;">{{'Consulter détails'| translate }}</strong> 
+       <button mat-icon-button style="margin-left: 400px;" (click)="onNoClick()" >
+        <mat-icon  style="color: white;">cancel</mat-icon>
+        </button>
+      </span>
+      </ul>
+    </mat-card>
+   
+<!--<div>          <strong >  {{local_data.domain | json}}</strong>
+</div>
+
+
+
+    <div class="row">
+      <div class="col-sm-9">
+        <mat-chip color="accent" selected style="margin-left: 250px;">
+          <strong > Domain : {{local_data.domain.name | json}}</strong></mat-chip>
+          <hr>
+        <div class="row" style="margin-left: 30px;">
+          <div class="col-8 col-sm-6">
+            
+           <p>  <strong >    Title: </strong>{{local_data.title |json}} </p>
+           <p> <strong  >  Question : </strong> <p [innerHTML]="local_data.question_body.question"> </p>
+
+           <p>  <strong > Responses: </strong> {{local_data.question_body.responses |json}}</p>
+
+          </div>
+          <div class="col-4 col-sm-6" >
+           <div >
+            <strong style="margin-left: 30px;">{{local_data.desQuestion}} ?</strong>
+            <hr>
+            <div class="col-6 col-sm-4">
+            <mat-radio-button value="1" style="margin-left: 50px;">
+            <strong> {{local_data.option1}} </strong> </mat-radio-button>
+            </div>
+            <div class="col-6 col-sm-4">
+              <mat-radio-button value="1" style="margin-left: 50px;">
+              <strong> {{local_data.option2}} </strong> </mat-radio-button>
+              </div>
+              <div class="col-6 col-sm-4">
+                <mat-radio-button value="1" style="margin-left: 50px;">
+                <strong> {{local_data.option3}} </strong> </mat-radio-button>
+                </div>  
+
+          </div> 
+       
+       
+        </div>
+      </div> -->
+     
+  
+
+      <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-9">
+         <mark style="margin-left: 300px ;border:1px solid palevioletred;
+         padding:3px;">
+            <strong  > {{local_data.domain.name }}</strong>
+          </mark>
+         
+        </div>
+      </div>
+
+
+    <div class="card" style="margin-top: 20px;margin-left: 5px;margin-right: 5px;">
+      <div class="card-body" >
+        <div class="row">
+          <div class="col">
+        <p>  <strong >    Sous Domaine: </strong>{{local_data.sub_domain}} </p>
+      </div>
+      <div class="col">
+        <p>  <strong >    Titre: </strong>{{local_data.title}} </p>
+      </div>
+        </div>
+        <p> <strong  >  Question : </strong> 
+          <div class="card" style="background-color: rgb(226, 223, 223);">
+            <span style="margin-left: 20px;margin-top: 10px;">
+            <p [innerHTML]="local_data.question_body.question"> </p>
+          </span>
+          </div>
+          
+         <div style="margin-left: 20px;">
+          <div *ngFor="let response of local_data.question_body.responses ; let i = index">
+           
+              <div class="row" style="margin-top: 15px;">
+                <div class="col-12 col-md-8">
+                  <i class="fa fa-circle" aria-hidden="true" style="margin-left: 50px;">     
+                               {{local_data.question_body.responses[i].label }}
+                   <mark style="border:1px solid palevioletred;padding:3px;">
+                    {{local_data.question_body.responses[i].code  }}</mark>
+                  
+                </i>
+                </div>
+
+                <div class="col-6 col-md-4">
+                  <p>{{local_data.question_body.responses[i].correct}}</p>
+                </div> 
+             
+                
+          
+              </div>
+         
+
+          </div>
+         </div>
+
+   
+
+
+      </div>
+    </div>
+  </div>

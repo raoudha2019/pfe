@@ -12,7 +12,7 @@ import { RoleService } from '../../service/Role.service';
 import { Action } from '../../model/Action';
 import { Role } from '../../model/Role';
 import { Permission } from '../../model/Permission';
-import { DialogComponent } from '../../dialog/dialog.component';
+//import { DialogComponent } from '../../dialog/dialog.component';
 import { Local } from 'protractor/built/driverProviders';
 import { TranslateService } from '@ngx-translate/core';
 import { from } from 'rxjs';
@@ -203,7 +203,7 @@ export class RoleAddComponent implements OnInit {
   closeDialog1(){
     this.dialogRef.close({event:'Cancel'});
   }
-//**************************dialog */
+/**************************dialog 
   
 openDialog1(): void {
   const dialogRef = this.dialog.open(DialogComponent,{
@@ -216,5 +216,5 @@ openDialog1(): void {
     console.log('The dialog was closed');
     
   });
-}
+}*/
 }

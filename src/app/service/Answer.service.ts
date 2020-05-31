@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpHeaders,HttpClient } from '@angular/common/http';
-import {Http, Response, Headers, RequestOptions} from '@angular/http';
+import {Http,  Headers, RequestOptions} from '@angular/http';
 import { Observable, from} from 'rxjs'
 import  'rxjs/add/operator/map';
 import{Qcm} from '../model/Qcm';
 import { map } from 'rxjs/operators';
-import { Answer } from '../model/Answer';
+
 import { Domain } from '../model/Domain';
 
 import { AuthenticationService } from './authentification.service';
@@ -24,16 +24,16 @@ var DeleteRole:string='http://localhost:9000/Answer/deleteAnswer/';
     providedIn: 'root'
   })
   export class QcmService {
-   Answer:Answer [];
+  // Answer:Answer [];
    constructor(public http: Http) {  
 }
 getAllAnswers()
 { 
-  return this.http.get(allRoles).map((response:Response)=>response.json());
+  //return this.http.get(allRoles).map((response:Response)=>response.json());
 }
 getAnswerByID(id: Number)
 {
-  return this.http.get(getRole+id).map((response:Response)=>response.json());
+ // return this.http.get(getRole+id).map((response:Response)=>response.json());
 }
 UpdateAnswer(answer,id: Number)
 {

@@ -1,35 +1,117 @@
-
-<div class="box" style=" margin-top: 50px; margin-bottom: 30px;border-radius: 5px;
-background: #ffffff;
-border-top: 3px solid #d2d6de;">
-<div class="tab" style="padding-top: 30px;">
-  <mat-card class="aa" style="
-    padding: 0px; ">
-    <ul fxLayoutGap="75%">
+<div class="box" style="height: 800px; margin-top: 50px; margin-bottom: 30px;border-radius: 5px; background: #ffffff; border-top: 3px solid #d2d6de;">
+  <div class="tab" style="padding-top: 30px;">
+    <mat-card class="aa" style=" padding: 0px; height: 72px;">
+   
+   <div class="row" >
+    <div class="col" style=" margin-top: 10px;margin-left: 40px;">
       <span style=" color: white; font-size: 17px;">
-        <strong> {{ 'QCM'  }}</strong>
+        <strong> {{ 'List des Qcms'|translate }}</strong> 
+      </span>  
+       </div>
+       
+    <div class="col-md-auto">
+    </div>
+    <div class="col col-lg-2" >
+      <div class="bb1" style="margin-top: 17px;margin-left: 7px;position: absolute;" fxLayoutGap="75%"> 
+        <mat-icon color="white" style="font-size:270%; line-height: 1; width:50px; color: white;" routerLink="/addDomain">
+          add_box</mat-icon>
+        </div>   
+       </div>
+  </div>
 
-        <div class="input-group" style="width: 250px;display: inline-flex;">
 
-          <mat-form-field style="  left:420px; ">
-            <mat-label style="margin-left:20px;line-height: 1; color: rgb(250, 250, 250);">{{'Rechercher' }}</mat-label>
-            <i class="fa fa-search"></i>
-            <input matInput (keyup)="applyFilter($event)">
-          </mat-form-field>
-          <div style="
-                   position: absolute; margin-left: 570px; margin-top: 17px;">
-            <mat-icon color="white" style="font-size:250%; line-height: 1; width:50px;" (click)="openDialog()">
-              add_box</mat-icon>
-          </div>
 
-        </div>
+    </mat-card>
 
-        <button style="color: white;" mat-stroked-button *ngIf="AjouterRole"
-          (click)="openDialog()">{{ 'Ajouter'  }}</button>
-      </span>
-    </ul>
-  </mat-card>
+  <div fxLayout="row" fxLayoutAlign="space-around center">
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
 
+    <mat-form-field style="margin-left: 180px; margin-top: 20px;" > 
+      <mat-select placeholder="Chercher par Domaine" [formControl]="DomainControl" [(ngModel)]="selectedValue" >
+            <mat-option *ngFor="let domaine of domaines" [value]="domaine.id">{{domaine.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+    </button>
+
+    </form>
+   <!-- <form style="display: flex" [formGroup]="formControl">
+      <mat-form-field>
+        <input matInput formControlName="domain">
+        <mat-placeholder>Name (substring)</mat-placeholder>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="title">
+        <mat-placeholder>Symbol (exact)</mat-placeholder>
+      </mat-form-field>
+    </form>
+-->
+
+
+
+
+
+
+</div>
+
+<!-- table-->
+<table mat-table [dataSource]="dataSource" >
+  
+  
+  <ng-container matColumnDef="domain">
+    <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef> <h5 class="hh">{{'Domaine'}}</h5> </th>
+    <td mat-cell *matCellDef="let qcm">{{qcm.domain.name}}</td>
+  </ng-container>
+
+
+  <ng-container  matColumnDef="Sub_Domain">
+     
+    <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Sous domaine' }}</h5> </th>
+    <td mat-cell *matCellDef= "let qcm"> {{qcm.sub_domain}} </td>
+ 
+  </ng-container>
+
+    <ng-container  matColumnDef="title">
+     
+      <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Titre' }}</h5> </th>
+      <td mat-cell *matCellDef= "let qcm"> {{qcm.title}} </td>
+   
+    </ng-container>
+
+  <!--  <ng-container  matColumnDef="questionBody">
+     
+      <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Question' }}</h5> </th>
+      <td mat-cell *matCellDef= "let qcm"  [innerHTML]="qcm.question_body.question">  </td>
+   
+    </ng-container>-->
+
+
+    <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef> <h5 class="hh">Action</h5> </th>
+    <td mat-cell *matCellDef="let qcm; let i=index"> 
+      <button  mat-icon-button>
+          <mat-icon (click)="openDialogeConsulter('Delete',qcm)" color="primary">visibility</mat-icon>
+      </button>
+      <button   mat-icon-button>
+          <mat-icon   (click)="openDialoge('Update',qcm)" class="color2">create</mat-icon>
+      </button>
+      <button   mat-icon-button>
+          <mat-icon (click)="openDialogedelete('Delete',qcm)" class="color1">delete_sweep</mat-icon>
+      </button>     
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<mat-paginator [length]="100"
+[pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+</mat-paginator>
+
+
+
+
+<!--
   <div class="container">
     <h2></h2>
     <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
@@ -40,87 +122,305 @@ border-top: 3px solid #d2d6de;">
           <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">Add</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Contact</a>
+          <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">Qcm</a>
         </li>
       </ul>
       <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+      
+        <table mat-table [dataSource]="dataSource" >
+  
+  
+          <ng-container matColumnDef="domain">
+            <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef> <h5 class="hh">{{'Domain'}}</h5> </th>
+            <td mat-cell *matCellDef="let qcm">{{qcm.domain.name}}</td>
+          </ng-container>
         
+        
+          <ng-container  matColumnDef="level">
+           
+            <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{ 'Level' }}</h5> </th>
+            <td mat-cell *matCellDef= "let qcm"> {{qcm.level}} </td>
+         
+          </ng-container>
+          <ng-container matColumnDef="status">
+              <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef> <h5 class="hh">{{ 'Status'  }}</h5> </th>
+              <td mat-cell *matCellDef="let qcm">{{qcm.status}}</td>
+            </ng-container>
+          
+
+            
+            <ng-container  matColumnDef="requiredTime">
+             
+              <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{ 'RequiredTime' }}</h5> </th>
+              <td mat-cell *matCellDef= "let qcm"> {{qcm.requiredTime}} </td>
+           
+            </ng-container>
+        
+            <ng-container  matColumnDef="desQuestion">
+             
+              <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Question' }}</h5> </th>
+              <td mat-cell *matCellDef= "let qcm"> {{qcm.desQuestion}} </td>
+           
+            </ng-container>
+
+
+
+
+            <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef> <h5 class="hh">Action</h5> </th>
+            <td mat-cell *matCellDef="let qcm; let i=index"> 
+              <button  mat-icon-button>
+                  <mat-icon (click)="openDialogeConsulter('Delete',qcm)" color="primary">visibility</mat-icon>
+              </button>
+              <button   mat-icon-button>
+                  <mat-icon   (click)="openDialoge('Update',qcm)" class="color2">create</mat-icon>
+              </button>
+              <button   mat-icon-button>
+                  <mat-icon (click)="openDialogedelete('Delete',qcm)" class="color1">delete_sweep</mat-icon>
+              </button>     
+            </td>
+          </ng-container>
+        
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+        <mat-paginator [length]="100"
+        [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+      </mat-paginator>
     
     </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">.
-          .......................................xxxxxxxxxxxxxx</div>
-        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
           
-          
+          <div  class="card" style=" box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+ background-image: linear-gradient(100deg,#dcc2a1fd,#f3ede517);     
+    "  >
+            <div class="simple-text" style="  margin-top: 26px; 
+            background-image: linear-gradient(100deg,#ece9e3,#f0ac59);">  
+              <img style="margin-left: 70px;     width: 88px;
+              height: 72px;"  src="https://media-exp1.licdn.com/dms/image/C4E0BAQHEew4pj8ZsuA/company-logo_200_200/0?e=2159024400&v=beta&t=QheJ6PLcxG9wn95AiWaBEoqiODnT0qHtexYJjW6WdeM">
+              <strong style=" margin-left: 150px; color: rgb(46, 43, 43); margin-left: 20px;font-style: italic; font-weight:900;">Proposez-vous Qcm!</strong> 
+              </div> 
           
           <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
-          <div mat-dialog-content style="margin-top: 20px;">
-      
-            <tr>
-              <td style="width: 20%;">
-                <mat-form-field>
-                  <mat-label>{{ 'DesQuestion' }}</mat-label>
-                  <input formControlName="desQuestion" matInput placeholder="DesQuestion" [formControl]="desQuestionControl"
-                    [(ngModel)]="desQuestion" required>
-                  <mat-error *ngIf="desQuestionControl.hasError('required')">
-                    {{ 'Username est requis'  }}
-                  </mat-error>
-                </mat-form-field>
-      
-                <mat-form-field>
-                  <mat-label>{{ 'Status' }}</mat-label>
-                  <input formControlName="status" matInput placeholder="Status" [formControl]="statusControl"
-                    [(ngModel)]="status" required>
-                  <mat-error *ngIf="statusControl.hasError('required')">
-                    {{ 'Firstname est requis'  }}
-                  </mat-error>
-                </mat-form-field>
-      
-                <mat-form-field>
-                  <mat-label>{{ 'level' }}</mat-label>
-                  <input formControlName="level" matInput placeholder="Level"  [formControl]="levelControl"
-                    [(ngModel)]="level" required>
-                  <mat-error *ngIf="levelControl.hasError('required')">
-                    {{ 'Lastname est requis'  }}
-                  </mat-error>
-                </mat-form-field>
-      
-                <mat-form-field>
-      
-                  <mat-label>{{'RequiredTime'}}</mat-label>
-                  <input formControlName="requiredTime" matInput placeholder="RequiredTime" [formControl]="requiredTimeControl"
-                    [(ngModel)]="requiredTime" required>
-                  <mat-error *ngIf="requiredTimeControl.hasError('required')">
-                    **************
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field style="margin-left: 150px;">
-                  <mat-label>{{ 'Domain'  }} </mat-label>
-                  <mat-select [formControl]="DomainControl" [(ngModel)]="selectedValue">
-      
-                    <mat-option *ngFor="let domaine of domaines ;let j = index" [value]="domaine.id">
-                      {{ domaine.name }}
-                    </mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="DomainControl.hasError('required')">
-                    {{ 'Role est requis'  }}
-                  </mat-error>
-                </mat-form-field>
-              </td>
-            </tr>
-      
-          </div>
-          <div mat-dialog-actions>
-            <button type="submit" class="btn"  >{{'Ajouter'}}</button>
-            <button type="submit" class="btn"  (click)="onNoClick()">{{'Annuler'}}</button>
-      
-          </div>
-        </form></div>
+            <div mat-dialog-content style="margin-top: 20px;">
+              <tr>
+                <td >
+                  <mat-form-field style="margin-left: 150px;">
+                    <mat-label>{{ 'Domain'  }} </mat-label>
+                    <mat-select [formControl]="DomainControl" [(ngModel)]="selectedValue">
+        
+                      <mat-option *ngFor="let domaine of domaines ;let j = index" [value]="domaine.id">
+                        {{ domaine.name }}
+                      </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="DomainControl.hasError('required')">
+                      {{ 'Domain est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 150px;">
+                    <mat-label>{{'RequiredTime'}}</mat-label>
+                    
+                      <mat-select [formControl]="requiredTimeControl" [(ngModel)]="requiredTime">
+                        <mat-option value="primary">10sec</mat-option>
+                        <mat-option value="accent">20sec</mat-option>
+                        <mat-option value="warn">30sec</mat-option>
+                      </mat-select>
+                    <mat-error *ngIf="requiredTimeControl.hasError('required')">
+                      {{'le temps necessaie est requis'}}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 150px;">
+                    <mat-label>{{ 'Status' }}</mat-label>
+                   
+                      <mat-select [formControl]="statusControl"
+                      [(ngModel)]="status">
+                        <mat-option value="primary">hidden</mat-option>
+                        <mat-option value="accent">disabled</mat-option>
+                        <mat-option value="warn">public</mat-option>
+                      </mat-select>
+                    <mat-error *ngIf="statusControl.hasError('required')">
+                      {{ 'Firstname est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 150px;">
+                    <mat-label>{{ 'level' }}</mat-label>
+                    <input formControlName="level" matInput placeholder="Level"  [formControl]="levelControl"
+                      [(ngModel)]="level" required>
+                    <mat-error *ngIf="levelControl.hasError('required')">
+                      {{ 'Lastname est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 150px;">
+                    <mat-label>{{ 'DesQuestion' }}</mat-label>
+                    <input formControlName="desQuestion" matInput placeholder="DesQuestion" [formControl]="desQuestionControl"
+                      [(ngModel)]="desQuestion" required>
+                    <mat-error *ngIf="desQuestionControl.hasError('required')">
+                      {{ 'Username est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+                  <mat-form-field style="margin-left: 200px;margin-right: 50px;">
+                    <mat-label>{{ 'Option1' }}</mat-label>
+                    <input formControlName="option1" matInput placeholder="Option1"  [formControl]="option1Control"
+                      [(ngModel)]="option1" required>
+                    <mat-error *ngIf="option1Control.hasError('required')">
+                      {{ 'Otion1 est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field style="margin-left: 200px;">
+                    <mat-label>{{ 'Option2' }}</mat-label>
+                    <input formControlName="option2" matInput placeholder="Option2"  [formControl]="option2Control"
+                      [(ngModel)]="option2" required>
+                    <mat-error *ngIf="option2Control.hasError('required')">
+                      {{ 'option2 est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+  
+                  <mat-form-field style="margin-left: 200px;">
+                    <mat-label>{{ 'Option3' }}</mat-label>
+                    <input formControlName="option3" matInput placeholder="option3"  [formControl]="option3Control"
+                      [(ngModel)]="option3" required>
+                    <mat-error *ngIf="option3Control.hasError('required')">
+                      {{ 'Option3 est requis'  }}
+                    </mat-error>
+                  </mat-form-field>
+  
+  
+                  
+                </td>
+              </tr>
+        
+            </div>
+            <div class="row">
+              <div class="col order-last">
+              
+              </div>
+              
+              <div class="col"     style="margin-right: -165px;
+              margin-bottom: 16px;">
+                <div mat-dialog-actions style="    flex-wrap: nowrap;">
+                  <button type="submit" class="btn">{{'Ajouter'|translate}}</button>
+                  <button type="submit" class="btn" (click)="closeDialog1()">{{'Annuler'|translate}}</button>
+                
+                </div>
+              </div>
+              <div class="col order-first">
+             
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+        </div>
+        <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+          
+          <div  class="card" style=" box-shadow: 0 2px 1px -1px rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 1px 3px 0 rgba(0,0,0,.12);
+ background-image: linear-gradient(100deg,#dcc2a1fd,#f3ede517);     
+    "  >
+            <div class="simple-text" style="  margin-top: 26px; 
+            background-image: linear-gradient(100deg,#ece9e3,#f0ac59);">  
+              <img style="margin-left: 70px;     width: 88px;
+              height: 72px;"  src="https://media-exp1.licdn.com/dms/image/C4E0BAQHEew4pj8ZsuA/company-logo_200_200/0?e=2159024400&v=beta&t=QheJ6PLcxG9wn95AiWaBEoqiODnT0qHtexYJjW6WdeM">
+              <strong style=" margin-left: 150px; color: rgb(46, 43, 43); margin-left: 20px;font-style: italic; font-weight:900;">Proposez-vous Qcm!</strong> 
+              </div> 
+              <div id="accordion">
+                <div class="card">
+                  <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Qcm edited by: 
+                      </button>
+                    </h5>
+                  </div>
+              
+                  <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                    <div class="card-body">
+
+                      question: 
+                      question: 
+                      <hr>
+                      <div class="row" style="margin-left: 50px;">
+                        <div class="col order-last">
+                          <button mat-raised-button class="btn btn-primary btn-round">Validated</button>
+
+                        </div>
+                        
+                        <div class="col">
+                          <button mat-raised-button class="btn btn-primary btn-round">Reviwied</button>
+           
+                          </div>
+                       
+                        <div class="col order-first">
+                          <button mat-raised-button class="btn btn-primary btn-round">Pending</button>
+        
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingTwo">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Collapsible Group Item #2
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+                    <div class="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+                <div class="card">
+                  <div class="card-header" id="headingThree">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Collapsible Group Item #3
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+                    <div class="card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    </div>
+                  </div>
+                </div>
+              </div>
+        <!--     <span>
+                <strong>{{local_data.desQuestion}} :</strong>
+          
+                <strong> {{local_data.option1}} </strong>
+         
+                <strong> {{local_data.option2}} </strong>
+             
+                <strong> {{local_data.option3}} </strong>
+                
+                <strong> {{local_data.domain}} </strong>
+   
+            <hr>
+            {{local_data.level}} 
+            {{local_data.status}} 
+   
+            {{qcm.requiredTime}} 
+   
+   
+          <hr>
+           </span> 
+--> 
+<!--           <mat-paginator [length]="100"
+           [pageSize]="2" [pageSizeOptions]="[5, 10, 25, 100]">
+         </mat-paginator>
+        </div>
+         
+      </div>
       </div>
        </div>
         
-       
+      -->    
 
         
             

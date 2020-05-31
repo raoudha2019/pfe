@@ -1,0 +1,25 @@
+
+
+<div class="card-icon" style="border-radius: 3px;
+background: linear-gradient(60deg,#f5b14c,#fb8c00);
+padding: 10px;
+margin-top: -20px;
+margin-right: 650px;
+float: left;">
+
+          <mat-icon class="color1" style="color:white ;">delete_sweep</mat-icon>
+
+        </div>
+        <button mat-icon-button style="margin-right: 10px;" (click)="onNoClick()" >
+          <mat-icon >cancel</mat-icon>
+          </button> 
+        
+<h5>
+  {{'Êtes-vous sûr de vouloir supprimer le Qcm'|translate}} {{local_data.firstname}}?</h5>
+
+
+<div mat-dialog-actions>
+<button type="submit" class="btn" (click)= "delete()" >{{'Oui'| translate}}</button>
+<button type="submit" class="btn"  (click)="onNoClick()" >{{'Non'|translate}}</button>
+
+</div>

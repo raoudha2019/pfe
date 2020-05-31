@@ -12,6 +12,12 @@
    border-radius:10px;
    height: 50px;
 }
+.card-icon{
+    margin-top: -20px;
+}
+.card-body{
+    margin-top: -30px;
+}
 
 .btn, .btn.btn-default, .mat-button.btn, .mat-button.btn.btn-default, .mat-raised-button.btn, .mat-raised-button.btn.btn-default, .mat-raised-button.btn:not([class*=mat-elevation-z]), .mat-raised-button.btn:not([class*=mat-elevation-z]).btn-default {
   
@@ -28,5 +34,31 @@
     height: 40px;
 }
 
+.tab {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-bottom: -23px;
+    margin-top: 0px;
+  
+  
+  }
 
-
+  ul {
+    padding:0;
+    margin:0;
+    list-style-type:none;
+    }
+   li {
+    margin-left:2px;
+    float:left; /*pour IE*/
+    }
+   ul li a {
+    display:block;
+    float:left;   
+    width:100px;
+    
+    text-decoration:none;
+    text-align:center;
+  
+     }
+  

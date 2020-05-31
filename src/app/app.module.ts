@@ -55,20 +55,33 @@ import {SelectCheckAllComponent}from './roles/role-add/select-check-all.componen
 import { PermissionService } from './service/permission.service';
 import { CookieService } from 'ngx-cookie-service';
 import { QcmComponent } from './qcm/qcm.component';
-import {QcmAddComponent} from './qcm/qcm-add/qcm-add.component'
+import {QcmAddComponent} from './qcm/qcm-add/qcm-add.component';
+import {DomaineComponent} from './qcm/domaine/domaine.component';
+import{DeleteQcmComponent} from './qcm/delete-qcm/delete-qcm.component';
+import {ConsultQcmComponent} from './qcm/consult-qcm/consult-qcm.component';
+import {UpdateQcmComponent} from './qcm/update-qcm/update-qcm.component';
+import {AddDomainComponent} from './domain/add-domain/add-domain.component';
 //import { PizzaPartyComponent } from './snack-bar-component-example-snack/snack-bar-component-example-snack.component';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material';
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import {DragDropModule} from '@angular/cdk/drag-drop';
+import {MatTreeModule} from '@angular/material/tree';
+//import { NgxTinymceModule } from '@tinymce/tinymce-angular';
+import { NgxTinymceModule } from 'ngx-tinymce';
+import { LMarkdownEditorModule } from 'ngx-markdown-editor';
+import {AddtestComponent} from './tests/addtest/addtest.component';
 import { MatSnackBarComponent } from './mat-snack-bar/mat-snack-bar.component';
+import { TestComponent } from './test/test.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18/', '.json');
 }
 @NgModule({
   declarations: [
     AppComponent,
-    SelectCheckAllComponent,
+    SelectCheckAllComponent,AddDomainComponent,
     MatSnackBarComponent,
     LoginComponent,
-    UserComponent,
+    UserComponent,TestComponent,
     DashComponent,
     DialogComponent,
     QcmBtnComponent,
@@ -77,18 +90,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UserUpdateComponent,
     UserConsulterComponent,
     MatSnackBarComponent,
-    QcmComponent,
-    QcmAddComponent
-
+    QcmComponent,DomaineComponent,
+    QcmAddComponent,AddtestComponent,
+    DeleteQcmComponent,ConsultQcmComponent,UpdateQcmComponent, TestComponent,
       
   ],
   imports: [  HttpClientModule, MatSnackBarModule,
     BrowserModule,RouterModule,FormsModule, ReactiveFormsModule,
     AppRoutingModule,LayoutModule,
     BrowserAnimationsModule,MatFormFieldModule,MatButtonModule,BrowserModule,
-    MatCheckboxModule,
-    MatCheckboxModule,
-    MatButtonModule,
+    MatCheckboxModule,LMarkdownEditorModule,
+    MatCheckboxModule,DragDropModule,
+    MatButtonModule,MatTreeModule,
     MatInputModule,
     MatAutocompleteModule,
     MatDatepickerModule,
@@ -114,9 +127,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     MatDialogModule,
     MatTooltipModule,
     MatSnackBarModule,
-    MatTableModule,
+    MatTableModule,  NgxTinymceModule.forRoot({
+     // baseURL: './assets/tinymce/',
+      // or cdn
+      baseURL: '//cdnjs.cloudflare.com/ajax/libs/tinymce/4.9.0/'
+    }),
     MatSortModule,
-    MatPaginatorModule,MatDialogModule,
+    MatPaginatorModule,MatDialogModule,RichTextEditorAllModule,
     WavesModule, 
     HttpModule,HttpClientModule,NavbarModule, WavesModule, ButtonsModule,IconsModule,MatSidenavModule,
     TranslateModule.forRoot({

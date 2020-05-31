@@ -3,14 +3,14 @@
   <div class="box" >
   <div class="tab" >
     <mat-card class="aa"  style="padding: 0px;" >
-      <ul fxLayoutGap="75%" >
+      <ul  >
       <span style=" color: white; font-size: 17px;">
        <strong>{{'Liste des Utilisateurs'| translate }}</strong> 
   
        <div class="input-group" style="width: 250px;display: inline-flex;">
            
           <mat-form-field style="  left:420px; ">
-              <mat-label style="margin-left:20px;line-height: 1;">{{'Rechercher'|translate}}</mat-label>
+              <mat-label style="margin-left:20px;line-height: 1; color: white;">{{'Rechercher'|translate}}</mat-label>
               <i class="fa fa-search"></i>
               <input matInput (keyup)="applyFilter($event)" >
             </mat-form-field>

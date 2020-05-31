@@ -18,6 +18,13 @@ import { AuthGuard } from './service/auth.guard';
 import{QcmComponent} from './qcm/qcm.component';
 import {QcmAddComponent} from './qcm/qcm-add/qcm-add.component';
 import { from } from 'rxjs';
+import {DomaineComponent} from './qcm/domaine/domaine.component';
+import {DeleteQcmComponent} from './qcm/delete-qcm/delete-qcm.component';
+import {UpdateQcmComponent} from './qcm/update-qcm/update-qcm.component';
+import {ConsultQcmComponent} from './qcm/consult-qcm/consult-qcm.component';
+import {AddDomainComponent} from './domain/add-domain/add-domain.component';
+import { TestComponent } from './test/test.component';
+import { AddtestComponent} from './tests/addtest/addtest.component'
 const routes: Routes = [
   {path:'',redirectTo: 'Login', pathMatch:'full'},
   {path:'Login', component: LoginComponent},
@@ -49,9 +56,15 @@ const routes: Routes = [
  
  
   {path:'qcm',component:  QcmComponent},
-  {path:'qcmAdd',component:QcmAddComponent  },
+  {path:'qcmAdd/:id',component:QcmAddComponent  },
+  {path:'qcmdel',component: DeleteQcmComponent },
+  {path:'qcmup',component: UpdateQcmComponent },
+  {path:'qcmcons',component: ConsultQcmComponent },
+  {path:'addDomain',component:AddDomainComponent},
 
-
+{path:'domain',component: DomaineComponent},
+{path:'test',component: TestComponent},
+{path:'addtest',component: AddtestComponent},
 ]} ];
 
 @NgModule({

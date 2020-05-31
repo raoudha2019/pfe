@@ -1,0 +1,13 @@
+/*.card {
+    background-image: 
+    url(https://lh3.googleusercontent.com/proxy/bTY-ITGQKrGFGywK5dXZkgiwXWGVwfU2BEDLfrmZwc0SYjRGo0Lw06O8_NzASxyBtWSsyRWKI1XIEZ_VkAj521X-Ic_RMj_nF2I0r0glSRsjqCFNnbdp2C6nFQ);
+    
+    background-repeat: no-repeat;
+    background-position: center top, center bottom;
+    width: 1024px;
+    min-height: 768px;
+    position: relative;
+}*/mat-chip {
+  max-width: 200px;
+}
+

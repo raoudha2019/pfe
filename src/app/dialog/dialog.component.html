@@ -1,25 +1,29 @@
-    
- <div class="card" style="border: 0;
- border-radius: 6px;
- color: #333;
- background: #fff;
- width: 100%;
- box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);">
-  <div class="card-icon" style="border-radius: 3px;
-  background: linear-gradient(60deg,#f5b14c,#fb8c00);
-  padding: 15px;
-  margin-top: -20px;
-  margin-right: 650px;
-  float: left;">
- <i class="material-icons" >content_copy</i>  
-</div>
-  <div class="card-body text-center">
-    <h4>
-      Votre opération a éte effectuée avec succée!
-    </h4>
-    <button type="submit" style="background-color:#fb8c00;color:white;  border-color: #ff9800;
-    box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);" 
-    (click)="onNoClick()">ok</button>
 
-  </div>
- </div>
+<div mat-dialog-content>
+  <p>Add simple code : <code>{{data.animal}}</code>  </p>
+  <mat-form-field class="test">
+    <mat-label></mat-label>
+    <input matInput [(ngModel)]= "data.animal">
+<!--    <input matInput  [(ngModel)]="questionData.title" [ngModelOptions]="{standalone: true}" >
+-->
+  </mat-form-field>
+  
+</div>
+
+<mat-chip color="red" selected >
+  {{data.animal}}</mat-chip> 
+
+<!--
+
+  <button (click)="changeStyle()"><span class="material-icons">
+    code
+    </span></button>
+  <md-editor name="Content1" [ngModel]="content1" mode="" [options]="options"></md-editor>
+
+  <ejs-richtexteditor id='rteForm' #fromRTE height='250px' [formatter]='formatter'[formControl]="desQuestion"
+                                  [toolbarSettings]='tools' [editorMode]='mode' (created)='onCreate()' [(ngModel)]="htmlContent">
+                              </ejs-richtexteditor>
+<md-editor name="Content" [preRender]="preRenderFunc" [(ngModel)]="content" [height]="'200px'"
+   [mode]="mode" required maxlength="500"></md-editor><div mat-dialog-actions>-->
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>

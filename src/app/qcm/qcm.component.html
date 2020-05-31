@@ -1,28 +1,288 @@
-<div class="dash" style="padding-right: 20px;">
 
-  <div class="card" style="width: 18rem; margin-right: 20px;">
- <!--   <img class="card-img-top"
+<div class="box" style="height: 800px; margin-top: 50px; margin-bottom: 30px;border-radius: 5px; background: #ffffff; border-top: 3px solid #d2d6de;">
+  <div class="tab" style="padding-top: 30px;">
+    <mat-card class="aa" style=" padding: 0px; height: 72px;">
    
-    src="https://as1.ftcdn.net/jpg/00/26/71/46/500_F_26714641_kzYRR71YWLncZ8cFwdYjtzoAfM0H3Pwe.jpg" alt="Card image cap">
-  --><div class="card-body">
-
-      <p class="card-text">
-          Partager des QCMs,inviter vos collègues pour faire la validation.
-          C'est enrechissant! 
-        </p>
-      <button class="btn btn"routerLink="/qcmAdd">Qcm</button>
-
-    </div>
-  </div>
-  <div class="card" style="width: 18rem; margin-right: 20px;">
-   <div class="card-body">
-   
-         <p class="card-text">
-             Partager des QCMs,inviter vos collègues pour faire la validation.
-             C'est enrechissant! 
-           </p>
-         <button class="btn btn"routerLink="/qcmAdd">Qcm</button>
-   
+   <div class="row" >
+    <div class="col" style=" margin-top: 10px;margin-left: 40px;">
+      <span style=" color: white; font-size: 17px;">
+        <strong> {{ 'Qcms'|translate }}</strong> 
+      </span>  
        </div>
-     </div>
+       
+    <div class="col-md-auto">
+    </div>
+    <div class="col col-lg-2" >
+      <div class="bb1" style="margin-top: 17px;margin-left: 7px;position: absolute;" fxLayoutGap="75%"> 
+        <mat-icon color="white" style="font-size:270%; line-height: 1; width:50px; color: white;" routerLink="/addDomain">
+          add_box</mat-icon>
+        </div>   
+       </div>
+  </div>
+
+
+
+    </mat-card>
+  </div>
+
+<div class="dash" style=" margin-top: 50px;">
+
+  <div *ngFor="let domaine of domaines">
+    <ul>
+      <li>
+        <div class="carousel-inner" style="margin-top: 50px;margin-left: 37px;">
+          <div style="padding-top: 30px;">
+        <div class="card" style="width: 15rem; margin-right: 20px; display: inline-block;">
+          <div class="card-body">
+           <div class="card-icon" >
+             <i class="material-icons">store</i>
+         </div>
+                <p class="card-text">
+                    Partager des QCMs,inviter vos collègues pour faire la validation.
+                    C'est enrechissant! 
+                  </p>
+                  
+                <button class="btn btn"  style="width: 12rem">  <a [routerLink]="['/qcmAdd/', domaine.id]" style="color: whitesmoke;font: 1.3em sans-serif;">{{domaine.name}}</a>
+                </button>
+                <hr>
+                <div class="container">
+                 <div class="row">
+                   <div class="col">
+      
+                     <i class="material-icons" style="margin-left:40px ;" >date_range</i> 
+                                   
+                   </div>
+                
+                   <div class="col">
+                    
+                     <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+                   
+                   </div>
+                 </div>
+               </div> 
+              </div>
+       </div>
+        
+      
+      </div>
+        </div>
+  
+      </li>
+    </ul>
+    
+  </div>
+
 </div>
+
+
+
+
+
+</div>
+
+<!--
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="margin-top: 70px;">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  
+
+  <div class="carousel-inner" style="margin-top: 50px;margin-left: 37px;">
+    <div style="padding-top: 30px;">
+
+    
+
+    <div class="carousel-item active">
+      <div *ngFor="let domaine of domaines">
+      <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+        <div class="card-body">
+         <div class="card-icon" >
+           <i class="material-icons">store</i>
+       </div>
+              <p class="card-text">
+                  Partager des QCMs,inviter vos collègues pour faire la validation.
+                  C'est enrechissant! 
+                </p>
+                
+              <button class="btn btn">  <a [routerLink]="['/qcmAdd/', domaine.id]">{{domaine.name}}</a>
+              </button>
+              <hr>
+              <div class="container">
+               <div class="row">
+                 <div class="col">
+
+                   <i class="material-icons" style="margin-left:40px ;" >date_range</i> 
+                                 
+                 </div>
+              
+                 <div class="col">
+                  
+                   <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+                 
+                 </div>
+               </div>
+             </div> 
+            </div>
+     </div>
+     <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+      <div class="card-body">
+       <div class="card-icon" >
+         <i class="material-icons">store</i>
+       </div>
+            <p class="card-text">
+                Partager des QCMs,inviter vos collègues pour faire la validation.
+                C'est enrechissant! 
+              </p>
+              <button class="btn btn">  <a [routerLink]="['/qcmAdd/', domaine.id]">{{domaine.name}}</a></button>
+                <hr>
+            <div class="container">
+             <div class="row">
+               <div class="col">
+                 <i class="material-icons" style="margin-left:40px ;">date_range</i> 
+                 <a style="color: black;"  class="navigation-item" mat-list-item routerLink="/addDomain" routerLinkActive="active"> </a>
+              
+               </div>
+            
+               <div class="col">
+                 <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+     
+               </div>
+             </div>
+           </div> 
+          </div>
+   </div>
+   <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+    <div class="card-body">
+     <div class="card-icon" >
+       <i class="material-icons">store</i>
+     </div>
+          <p class="card-text">
+              Partager des QCMs,inviter vos collègues pour faire la validation.
+              C'est enrechissant! 
+            </p>
+            <button class="btn btn">  <a [routerLink]="['/qcmAdd/', domaine.id]">{{domaine.name}}</a></button>
+            <hr>
+          <div class="container">
+           <div class="row">
+             <div class="col">
+               <i class="material-icons" style="margin-left:40px ;">date_range</i> 
+               <a style="color: black;"  class="navigation-item" mat-list-item routerLink="/addDomain" routerLinkActive="active"> </a>
+            
+             </div>
+          
+             <div class="col">
+               <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+   
+             </div>
+           </div>
+         </div> 
+        </div>
+ </div>
+    </div>
+    
+    </div>
+ <!--
+    <div class="carousel-item active">
+      <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+        <div class="card-body">
+         <div class="card-icon" >
+           <i class="material-icons">store</i>
+       </div>
+              <p class="card-text">
+                  Partager des QCMs,inviter vos collègues pour faire la validation.
+                  C'est enrechissant! 
+                </p>
+                
+              <button class="btn btn">  <a [routerLink]="['/qcmAdd/', domaine.id]">{{domaine.name}}</a>
+              </button>
+              <hr>
+              <div class="container">
+               <div class="row">
+                 <div class="col">
+
+                   <i class="material-icons" style="margin-left:40px ;" >date_range</i> 
+                 
+                   <a style="color: black;"  class="navigation-item" mat-list-item routerLink="/addDomain" routerLinkActive="active"> </a>
+                
+                 </div>
+              
+                 <div class="col">
+                  <button  matTooltip="editor!" [matTooltipPosition]="'above'">
+                  
+                   <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+                  </button>
+                 </div>
+               </div>
+             </div> 
+            </div>
+     </div>
+<!--     <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+      <div class="card-body">
+       <div class="card-icon" >
+         <i class="material-icons">store</i>
+       </div>
+            <p class="card-text">
+                Partager des QCMs,inviter vos collègues pour faire la validation.
+                C'est enrechissant! 
+              </p>
+            <button class="btn btn"routerLink="/addDomain">Java</button>
+            <hr>
+            <div class="container">
+             <div class="row">
+               <div class="col">
+                 <i class="material-icons" style="margin-left:40px ;">date_range</i> 
+                 <a style="color: black;"  class="navigation-item" mat-list-item routerLink="/addDomain" routerLinkActive="active"> </a>
+              
+               </div>
+            
+               <div class="col">
+                 <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+     
+               </div>
+             </div>
+           </div> 
+          </div>
+   </div>
+   <div class="card" style="width: 18rem; margin-right: 20px;display: inline-block;">
+    <div class="card-body">
+     <div class="card-icon" >
+       <i class="material-icons">store</i>
+     </div>
+          <p class="card-text">
+              Partager des QCMs,inviter vos collègues pour faire la validation.
+              C'est enrechissant! 
+            </p>
+          <button class="btn btn"routerLink="/qcmAdd">C++</button>
+          <hr>
+          <div class="container">
+           <div class="row">
+             <div class="col">
+               <i class="material-icons" style="margin-left:40px ;">date_range</i> 
+               <a style="color: black;"  class="navigation-item" mat-list-item routerLink="/addDomain" routerLinkActive="active"> </a>
+            
+             </div>
+          
+             <div class="col">
+               <mat-icon style="color: black;" class="material-icons">person</mat-icon><span class="navigation-item-label"> </span>
+   
+             </div>
+           </div>
+         </div> 
+        </div>
+ </div>-->
+   <!-- 
+</div>
+  
+</div> 
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+-->

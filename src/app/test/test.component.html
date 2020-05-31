@@ -1,0 +1,140 @@
+
+<div class="card">
+  
+  <div style="padding-left: 630px"> 
+    </div>
+ 
+    <mat-card style=" margin: 0 20px;margin-top: -20px; background: linear-gradient(60deg,#f5b14c,#fb8c00);">
+
+      <ul fxLayoutGap="75%" >
+      <span style="  font-size: 17px;">
+       <strong style="color: white;">{{ 'Détails Qcm' |translate }}</strong> 
+      </span>
+      <button mat-icon-button style="margin-left: 445px;" (click)="onNoClick()" >
+        <mat-icon  style="color: white;">cancel</mat-icon>
+        </button>
+        
+      </ul>
+    </mat-card> 
+    <div class="card" style="margin-top: 20px;margin-left: 5px;margin-right: 5px;">
+      <div class="card-body" >
+        
+        <p>
+          <div class="row">
+           
+            <div class="col">
+              <strong  >Sous Domaine:</strong><span style="margin-left: 20px;">{{data.name4}}</span>
+            </div> 
+           <div class="col">
+          <strong  >Titre:</strong><span style="margin-left: 20px;">{{data.name0}}</span>
+        </div> 
+          </div>
+        <p>
+
+           <strong  >  Question : </strong> 
+          <div class="card">
+            <span style="margin-left: 20px;margin-top: 10px;">
+            <p [innerHTML]="data.name1"> </p>
+          </span>
+          </div>
+          
+         <div style="margin-left: 50px;">
+           
+              <div class="row">
+                <div class="col">
+                  <div style="margin-left: 30px;">
+                    <div *ngFor="let response of data.name3 ; let i = index">
+                     
+                        <div class="row">
+                          <div class="col">
+                            <i class="fa fa-circle" aria-hidden="true">
+                         <span  style="margin-left: 10px;"> {{data.name3[i].label  }}</span>  
+                         <span>
+                           
+                          <mark style="border:1px solid palevioletred;
+                          padding:3px;">{{data.name3[i].code}}</mark>
+                      
+                        </span></i>
+                          
+                          </div>
+          
+                          <div class="col" style="margin-left: 70px;">
+                            <p>{{data.name3[i].correct }}</p>
+                          </div> 
+    
+    
+    
+    
+             
+             </div>
+    
+       
+    
+    
+          </div>
+        </div>
+                </div>
+              </div>
+         
+
+
+            
+<!--   <h6>{{data.name0  |json}}</h6>
+    <h6>{{data.name1 }}</h6>
+    <h6>{{data.name2 }}</h6>
+    <h6>{{data.name3 |json }}</h6>
+</div>
+
+--> 
+<!--
+<form [formGroup]="form" novalidate>
+
+    <mat-form-field class="full-width">
+        <mat-chip-list #chipList>
+            <mat-chip *ngFor="let requirement of form.get('requirements').controls; let i = index;" [selectable]="selectable"
+                [removable]="removable" (removed)="remove(i)">
+                {{requirement.value}}
+                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input placeholder="New Requirement..."
+                   [matChipInputFor]="chipList"
+                   [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                   [matChipInputAddOnBlur]="addOnBlur"
+                   (matChipInputTokenEnd)="add($event)" />
+        </mat-chip-list>
+    </mat-form-field>
+
+    
+    <pre>{{form.value | json}}</pre>
+    
+</form>-->
+
+<!--
+<form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+  <label>Question </label>
+  <br>  
+  <input type="text" formControlName="question">
+  <br>
+  <label>status </label>
+  <br>  
+  <input type="text" formControlName="status">
+  <br>
+  <br>  
+  <div *ngFor="let response of getPhonesFormControls(); let i = index">
+    <label>Reponses {{i}} </label>  
+    
+    <input matInput    [formControl]="response" type="text" >
+
+  <button (click)="removePhone(i)">Remove Phone</button>    
+  </div>
+  <br>  
+  <button (click)="addPhone()">Add new phone</button>
+  <br>
+  <br>  
+  <button class="btn" type="submit">{{'Ajouter'|translate}}</button>
+            
+</form>
+  <br>  
+
+{{userForm.value | json}}
+</div>-->

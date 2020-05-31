@@ -1,0 +1,37 @@
+<div class="box" style="height: 800px; margin-top: 50px; margin-bottom: 30px;border-radius: 5px; background: #ffffff; border-top: 3px solid #d2d6de;">
+    <div class="tab" style="padding-top: 30px;">
+      <mat-card class="aa" style=" padding: 0px; height: 72px;">
+     <div class="row" >
+      <div class="col" style=" margin-top: 10px;margin-left: 40px;">
+        <span style=" color: white; font-size: 17px;">
+          <strong> {{ 'Qcms'|translate }}</strong> 
+        </span>  
+         </div>
+    </div>
+      </mat-card>
+    </div>
+    <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+        <mat-form-field style="margin-left: 180px; margin-top: 20px;" > 
+          <mat-select placeholder="Chercher par Domaine" [formControl]="DomainControl" [(ngModel)]="selectedValue" >
+                <mat-option *ngFor="let domaine of domaines" [value]="domaine.id">{{domaine.name}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i>
+        </button>
+        </form>
+<pre>{{ data |json}}</pre>
+<pre>{{ dataaa }}</pre>
+        <!--
+<mat-selection-list>
+    <mat-list-option *ngFor="dat  of dat1">
+      {{dat}}
+    </mat-list-option>
+  </mat-selection-list>
+  
+  <p>
+    Options selected: {{shoes.selectedOptions.selected}}
+  </p>-->
+</div>
+
+
+<button (click)="allTest()" ><i class="fa fa-search" aria-hidden="true"></i>

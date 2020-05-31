@@ -34,6 +34,8 @@ export class AddUserComponent implements OnInit {
   searchUserForm: FormGroup;
   actions: Action[];
   selectedValue: number;
+
+
    usernameControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
@@ -78,16 +80,13 @@ export class AddUserComponent implements OnInit {
     {
       this.messageForm = this.formBuilder.group({
         username: ['', Validators.required],
-
         firstname: ['', Validators.required],
         lastname: ['', Validators.required],
         email: ['', Validators.required],
         password: ['', Validators.required,
-    // Validators.pattern(/[0-9a-zA-Z]{6,}/)
-  ],
-  
+       // Validators.pattern(/[0-9a-zA-Z]{6,}/)
+       ],
         role: ['', Validators.required],
-      
       }) 
      
 

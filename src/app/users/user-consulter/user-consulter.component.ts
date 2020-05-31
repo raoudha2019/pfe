@@ -29,8 +29,13 @@ export class UserConsulterComponent implements OnInit {
     private utilisateurService: UtilisateurService,
     public translate: TranslateService, public dialogRef: MatDialogRef<UserConsulterComponent>,
     @Optional() @Inject(MAT_DIALOG_DATA) public data: RoleData) { 
+
+
       console.log(data);
       this.local_data = {...data};
+
+
+      
       translate.addLangs(['en', 'fr']);  
       if (localStorage.getItem('locale')) {  
         const browserLang = localStorage.getItem('locale');  
