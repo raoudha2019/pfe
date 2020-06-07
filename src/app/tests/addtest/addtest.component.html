@@ -1,15 +1,16 @@
 <div class="box" style="height: 800px; margin-top: 50px; margin-bottom: 30px;border-radius: 5px; background: #ffffff; border-top: 3px solid #d2d6de;">
-    <div class="tab" style="padding-top: 30px;">
+    <div class="tab" style="padding-top: 30px;margin-bottom:0px;">
       <mat-card class="aa" style=" padding: 0px; height: 72px;">
      <div class="row" >
       <div class="col" style=" margin-top: 10px;margin-left: 40px;">
         <span style=" color: white; font-size: 17px;">
-          <strong> {{ 'Qcms'|translate }}</strong> 
+          <strong> {{ 'Ajouter Test'|translate }}</strong> 
         </span>  
          </div>
     </div>
       </mat-card>
     </div>
+    <!--
     <form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
         <mat-form-field style="margin-left: 180px; margin-top: 20px;" > 
           <mat-select placeholder="Chercher par Domaine" [formControl]="DomainControl" [(ngModel)]="selectedValue" >
@@ -18,20 +19,116 @@
         </mat-form-field>
         <button type="submit"><i class="fa fa-search" aria-hidden="true"></i>
         </button>
-        </form>
-<pre>{{ data |json}}</pre>
-<pre>{{ dataaa }}</pre>
+        </form>-->
+<form [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+    <div class="container" style="padding-top: 50px;">
+      
+      <div class="row">
+        <div class="col" style="margin-left: 90px;">
+          <ul class="list-group">
+            <li class="list-group-item">
+          <mat-form-field style="margin-left: 30px;
+          width: 80%;">
+            <mat-label>Title</mat-label>
+            <input formControlName="title" matInput placeholder="Titre" [formControl]="titleControl" [(ngModel)]="testData.title"
+              required>
+              <mat-error *ngIf="titleControl.hasError('required')">
+                {{ 'Titre est requis' | translate }}
+              </mat-error>
+          </mat-form-field>
+            </li> 
+            <li class="list-group-item">
+              <mat-form-field style="margin-left: 30px;
+              width: 80%;">
+            <mat-label>Status</mat-label>
+            <input formControlName="status" matInput placeholder="Status" [formControl]="statusControl"
+              [(ngModel)]="testData.status" required>
+            <mat-error *ngIf="statusControl.hasError('required')">
+              {{ 'Status est requis' | translate }}
+            </mat-error>
+          </mat-form-field>
+            </li>
+          <li class="list-group-item">
+
+          <mat-form-field  style="margin-left: 30px;
+          width: 80%;">
+            <mat-label>Nbre question </mat-label>
+            <input  type="number" 
+            min="0" max="30" formControlName="max_nb_questions" matInput placeholder="Nonbre max " [formControl]="max_nb_questionsControl"
+              [(ngModel)]="testData.max_nb_questions" required>
+            <mat-error *ngIf="max_nb_questionsControl.hasError('required')">
+              {{ 'nbrequestion est requis' | translate }}
+            </mat-error>
+          </mat-form-field>
+            </li>
+            <li class="list-group-item">
+
+              <mat-form-field style="margin-left: 30px;
+              width: 80%;">
+                <mat-label>Temps necessaire </mat-label>
+                <input   type="number"  min="10" max="30" formControlName="time_limite" matInput placeholder="Temps necessaire " [formControl]="time_limiteControl"
+                  [(ngModel)]="testData.time_limite" required>
+                <mat-error *ngIf="time_limiteControl.hasError('required')">
+                  {{ 'nbrequestion est requis' | translate }}
+                </mat-error>
+              </mat-form-field>
+                </li>
+          </ul> 
+        </div>
+   <!--      <mat-selection-list formControlName="qcmJ" >
+            <mat-list-option  *ngFor="let qcm of qcm_js" [(ngModel)]="testData.qcm_js">
+              {{qcm.title}}
+            </mat-list-option>
+          </mat-selection-list> 
+       <p>
+            Options selected: {{testData.qcm_js}}
+          </p> -->
+         
+          <div class="col">
+      
+        <ul class="list-group">
+          <li class="list-group-item">
+        <mat-form-field *ngFor="let action of domains; let i = index" style="padding-left: 50px;">
+          <mat-label>{{ action.name | translate }}</mat-label>
+
+          <mat-select [formControl]="PermissionControl" multiple >
+            <mat-option *ngFor="let permission of qcmsList ;let j = index"  #matOption
+              (click)="check($event,matOption.selected,i,j)" [value]="permission.id">
+              <span >
+              {{ permission.title | translate }}</span>
+            </mat-option>
+            <mat-option>All</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </li>
+        </ul>
+        </div>
+      </div>
+      
+        <div class="row" style="margin-top: 40px;">
+          <div class="col order-last">
+          </div>
+          <div class="col" style="width: 100%; ">
+            <div mat-dialog-actions style="    flex-wrap: nowrap;">
+              <button class="btn">{{'Aperçu'|translate}}</button>
+              <button type="submit" class="btn">{{'Ajouter'|translate}}</button>
+              <button type="submit" class="btn" (click)="closeDialog1()">{{'Annuler'|translate}}</button>
+            </div>
+          </div>
+          <div class="col order-first">
+          </div>
+        </div>
+      </div>
+    </form>
+   
         <!--
 <mat-selection-list>
     <mat-list-option *ngFor="dat  of dat1">
       {{dat}}
     </mat-list-option>
   </mat-selection-list>
-  
-  <p>
-    Options selected: {{shoes.selectedOptions.selected}}
-  </p>-->
+  <button (click)="allTest()"><i class="fa fa-search" aria-hidden="true"></i>
+  -->
+ 
 </div>
 
-
-<button (click)="allTest()" ><i class="fa fa-search" aria-hidden="true"></i>

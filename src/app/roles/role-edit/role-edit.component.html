@@ -26,7 +26,8 @@
           </mat-form-field>  
           <mat-form-field>
             <mat-label>{{'Description'|translate}}</mat-label>
-               <input formControlName="description" matInput  placeholder="Description" [formControl]="descriptionControl" [(ngModel)]="local_data.description" required>
+               <input formControlName="description" matInput  placeholder="Description" [formControl]="descriptionControl"
+                [(ngModel)]="local_data.description" required>
                <mat-error *ngIf="descriptionControl.hasError('required')">
                    {{'Description est requis'|translate}}
               </mat-error>

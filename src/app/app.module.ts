@@ -69,9 +69,14 @@ import {MatTreeModule} from '@angular/material/tree';
 //import { NgxTinymceModule } from '@tinymce/tinymce-angular';
 import { NgxTinymceModule } from 'ngx-tinymce';
 import { LMarkdownEditorModule } from 'ngx-markdown-editor';
-import {AddtestComponent} from './tests/addtest/addtest.component';
 import { MatSnackBarComponent } from './mat-snack-bar/mat-snack-bar.component';
 import { TestComponent } from './test/test.component';
+import {AddtestComponent} from './tests/addtest/addtest.component';
+import {ListTestComponent} from './tests/list-test/list-test.component';
+import {ConsultTestComponent} from './tests/consult-test/consult-test.component';
+import {DeleteTestComponent} from './tests/delete-test/delete-test.component';
+import {EditTestComponent} from './tests/edit-test/edit-test.component'
+import {CreateFileComponent} from './tests/create-file/create-file.component';
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18/', '.json');
 }
@@ -88,10 +93,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AddUserComponent,
     UserDeleteComponent,
     UserUpdateComponent,
-    UserConsulterComponent,
-    MatSnackBarComponent,
-    QcmComponent,DomaineComponent,
-    QcmAddComponent,AddtestComponent,
+    UserConsulterComponent,CreateFileComponent,
+    MatSnackBarComponent,ConsultTestComponent,
+    QcmComponent,DomaineComponent,DeleteTestComponent,
+    QcmAddComponent,AddtestComponent,ListTestComponent,EditTestComponent,
     DeleteQcmComponent,ConsultQcmComponent,UpdateQcmComponent, TestComponent,
       
   ],

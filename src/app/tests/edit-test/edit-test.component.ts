@@ -21,13 +21,12 @@ export interface DialogData {
   id: number;
   qcms: Qcm1;
 }
-
 @Component({
-  selector: 'app-addtest',
-  templateUrl: './addtest.component.html',
-  styleUrls: ['./addtest.component.css']
+  selector: 'app-edit-test',
+  templateUrl: './edit-test.component.html',
+  styleUrls: ['./edit-test.component.css']
 })
-export class AddtestComponent implements OnInit {
+export class EditTestComponent implements OnInit {
   message: string = 'Snack Bar opened.';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
@@ -72,6 +71,7 @@ export class AddtestComponent implements OnInit {
     Validators.required,
     Validators.nullValidator,
   ]);
+  dialogRef: any;
  
 
   
@@ -86,6 +86,7 @@ export class AddtestComponent implements OnInit {
     {
     //  console.log(data);
       this.local_data = {...data};
+      this.domain= this.local_data.domain;
       this.messageForm = this.formBuilder.group({
         title: ['', Validators.required],
         status: ['', Validators.required],
@@ -183,25 +184,27 @@ for (let domain of this.domains ){
 
      console.log(this.role.qcm_js);
   if (this.messageForm.invalid || this.role.qcm_js.length == 0 ) {
-   // return  console.log(this.local_data);
-  // alert("tt les champs sont obligatoire!!");
+   alert("tt les champs sont obligatoire!!");
 
   } 
  
   
   console.log("aaaaa"); 
- this.testservice.addTest(this.role).subscribe((role) => {
+ this.testservice.UpdateTest(this.role,this.local_data.id).subscribe((role) => {
    
-  this.snackBar.openSnackBar("Test ajouté!",'fermé','red-snackbar');
+  this.snackBar.openSnackBar("done!",'Close','red-snackbar');
 
   },     
   (error) => {
     console.log("ERROR"+JSON.stringify(error))
    alert(error._body)
-   //this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
+ //this.snackBar.openSnackBar(error._body,'Close','red-snackbar');
 
   });
   
 }
 
+closeDialog(){
+  this.dialogRef.close({event:'Cancel'});
+}
 }

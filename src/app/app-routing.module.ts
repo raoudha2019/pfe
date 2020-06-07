@@ -24,7 +24,12 @@ import {UpdateQcmComponent} from './qcm/update-qcm/update-qcm.component';
 import {ConsultQcmComponent} from './qcm/consult-qcm/consult-qcm.component';
 import {AddDomainComponent} from './domain/add-domain/add-domain.component';
 import { TestComponent } from './test/test.component';
-import { AddtestComponent} from './tests/addtest/addtest.component'
+import { AddtestComponent} from './tests/addtest/addtest.component';
+import { ListTestComponent} from './tests/list-test/list-test.component';
+import { DeleteTestComponent} from './tests/delete-test/delete-test.component';
+import { ConsultTestComponent} from './tests/consult-test/consult-test.component';
+import {EditTestComponent}from './tests/edit-test/edit-test.component';
+import { CreateFileComponent} from './tests/create-file/create-file.component';
 const routes: Routes = [
   {path:'',redirectTo: 'Login', pathMatch:'full'},
   {path:'Login', component: LoginComponent},
@@ -61,10 +66,16 @@ const routes: Routes = [
   {path:'qcmup',component: UpdateQcmComponent },
   {path:'qcmcons',component: ConsultQcmComponent },
   {path:'addDomain',component:AddDomainComponent},
+  {path:'domain',component: DomaineComponent},
 
-{path:'domain',component: DomaineComponent},
 {path:'test',component: TestComponent},
 {path:'addtest',component: AddtestComponent},
+{path:'listtest',component: ListTestComponent},
+{path:'consulttest',component: ConsultTestComponent},
+{path:'deltest',component: DeleteTestComponent},
+{path:'edittest',component: EditTestComponent},
+{path:'file',component:CreateFileComponent},
+
 ]} ];
 
 @NgModule({

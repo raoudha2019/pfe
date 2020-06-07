@@ -1,0 +1,96 @@
+<div class="box" style="height: 800px; margin-top: 50px; margin-bottom: 30px;border-radius: 5px; background: #ffffff; border-top: 3px solid #d2d6de;">
+    <div class="tab" style="padding-top: 30px;">
+      <mat-card class="aa" style=" padding: 0px; height: 72px;">
+     
+     <div class="row" >
+      <div class="col" style=" margin-top: 10px;margin-left: 40px;">
+        <span style=" color: white; font-size: 17px;">
+          <strong> {{ 'List des Tests'|translate }}</strong> 
+        </span>  
+         </div>
+         
+      <div class="col-md-auto">
+      </div>
+      <div class="col col-lg-2" >
+        <div class="bb1" style="margin-top: 17px;margin-left: 7px;position: absolute;" fxLayoutGap="75%"> 
+          <mat-icon color="white" style="font-size:270%; line-height: 1; width:50px; color: white;" routerLink="/addtest">
+            add_box</mat-icon>
+          </div>   
+         </div>
+    </div>
+  
+  
+  
+      </mat-card>
+          
+
+          <table mat-table [dataSource]="dataSource" >
+            
+  
+            <ng-container matColumnDef="title">
+              <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef> <h5 class="hh">{{'Titre'}}</h5> </th>
+              <td mat-cell *matCellDef="let test">{{test.title}}</td>
+            </ng-container>
+          
+          
+            <ng-container  matColumnDef="status">
+               
+              <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Status' }}</h5> </th>
+              <td mat-cell *matCellDef= "let test"> {{test.status}} </td>
+           
+            </ng-container>
+          
+              <ng-container  matColumnDef="max_nb_questions">
+               
+                <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Nbre_Qcm' }}</h5> </th>
+                <td mat-cell *matCellDef= "let test"> {{test.qcm_js.length}} </td>
+             
+              </ng-container>
+              <ng-container  matColumnDef="time_limite">
+               
+                <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Temps necessaires' }}</h5> </th>
+                <td mat-cell *matCellDef= "let test"> {{test.time_limite*test.qcm_js.length}} </td>
+             
+              </ng-container>
+          
+            <!--  <ng-container  matColumnDef="questionBody">
+               
+                <th style="font-size: 14px;" mat-header-cell *matHeaderCellDef><h5 class="hh"> {{'Question' }}</h5> </th>
+                <td mat-cell *matCellDef= "let qcm"  [innerHTML]="qcm.question_body.question">  </td>
+             
+              </ng-container>-->
+          
+          
+              <ng-container matColumnDef="action">
+              <th mat-header-cell *matHeaderCellDef> <h5 class="hh">Action</h5> </th>
+              <td mat-cell *matCellDef="let test; let i=index"> 
+                <button  mat-icon-button>
+                    <mat-icon (click)="openDialogeConsulter('Delete',test)" color="primary" matTooltip="voir détails">visibility</mat-icon>
+                </button>
+                <button   mat-icon-button>
+                    <mat-icon   (click)="openDialoge('Update',test)" class="color2" matTooltip="editer">create</mat-icon>
+                </button>
+                <button   mat-icon-button>
+                    <mat-icon (click)="openDialogedelete('Delete',test)" class="color1" matTooltip="supprimer">delete_sweep</mat-icon>
+                </button> 
+                <button   mat-icon-button>
+                  <mat-icon (click)="openDialogefile ('Delete',test)" class="color2" matTooltip="export en php">save_alt</mat-icon>
+              </button>
+                
+
+              </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <mat-paginator [length]="100"
+          [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+          </mat-paginator>
+         </div>
+    </div>
+  
+  
+  
+ 
+    

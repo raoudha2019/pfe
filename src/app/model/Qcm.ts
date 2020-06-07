@@ -11,4 +11,6 @@ export class Qcm {
     option2:String;
     option3:String;
 
+
+    
 }

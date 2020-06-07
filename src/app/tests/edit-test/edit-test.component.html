@@ -1,0 +1,90 @@
+<div class="card">
+  
+    <div style="padding-left: 630px">
+      
+    </div>
+    <mat-card class="aa" style=" margin: 0 20px;margin-top: -20px;">
+      <ul fxLayoutGap="75%" >
+      <span style="  font-size: 17px;">
+       <strong style="color: white;">{{'Editer Test'| translate }}</strong> 
+       <button mat-icon-button style="margin-left: 400px;" (click)="closeDialog()" >
+        <mat-icon  style="color: white;">cancel</mat-icon>
+        </button>
+      </span>
+      </ul>
+    </mat-card>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col" style="width: 50%;">
+            <mat-form-field style="margin-left: 30px;
+            ">
+              <mat-label>Title</mat-label>
+              <input formControlName="title" matInput placeholder="Titre" [formControl]="titleControl" 
+              [(ngModel)]="local_data.title"
+                required>
+                <mat-error *ngIf="titleControl.hasError('required')">
+                  {{ 'Titre est requis' | translate }}
+                </mat-error>
+            </mat-form-field>
+              
+                <mat-form-field style="margin-left: 30px;
+               ">
+              <mat-label>Status</mat-label>
+              <input formControlName="status" matInput placeholder="Status" [formControl]="statusControl"
+              [(ngModel)]="local_data.status" required>
+              <mat-error *ngIf="statusControl.hasError('required')">
+                {{ 'Status est requis' | translate }}
+              </mat-error>
+            </mat-form-field>
+            
+  
+            <mat-form-field  style="margin-left: 30px;
+           ">
+              <mat-label>Nbre question </mat-label>
+              <input  type="number" 
+              min="0" max="30" formControlName="max_nb_questions" matInput placeholder="Nonbre max " [formControl]="max_nb_questionsControl"
+              [(ngModel)]="local_data.max_nb_questions" required>
+              <mat-error *ngIf="max_nb_questionsControl.hasError('required')">
+                {{ 'nbrequestion est requis' | translate }}
+              </mat-error>
+            </mat-form-field>
+            
+  
+                <mat-form-field style="margin-left: 30px;
+               ">
+                  <mat-label>Temps necessaire </mat-label>
+                  <input   type="number"  min="10" max="30" formControlName="time_limite" matInput placeholder="Temps necessaire " [formControl]="time_limiteControl"
+                  [(ngModel)]="local_data.time_limite" required>
+                  <mat-error *ngIf="time_limiteControl.hasError('required')">
+                    {{ 'nbrequestion est requis' | translate }}
+                  </mat-error>
+                </mat-form-field>
+        </div>
+        <div class="col">
+            <mat-form-field *ngFor="let action of domains; let i = index" style="padding-left: 50px;">
+                <mat-label>{{ action.name | translate }}</mat-label>
+      
+                <mat-select [formControl]="PermissionControl" multiple >
+                  <mat-option *ngFor="let permission of qcmsList ;let j = index"  #matOption
+                    (click)="check($event,matOption.selected,i,j)" [value]="permission.id">
+                    <span >
+                    {{ permission.title | translate }}</span>
+                  </mat-option>
+                  <mat-option>All</mat-option>
+                </mat-select>
+              </mat-form-field>
+        </div>
+      </div>
+      <div class="row" style="margin-top: 40px;">
+        <div class="col order-last">
+        </div>
+        <div class="col" >
+          <div mat-dialog-actions style="    flex-wrap: nowrap;">
+          
+            <button type="submit" class="btn">{{'Editer'|translate}}</button>
+            <button type="submit" class="btn" (click)="closeDialog()">{{'Annuler'|translate}}</button>
+          </div>
+        </div>
+        <div class="col order-first">
+        </div>
+      </div>
+</div>

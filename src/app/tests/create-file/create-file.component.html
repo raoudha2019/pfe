@@ -1,0 +1,20 @@
+
+<div class="card">
+  
+     
+     <mat-card class="aa" style=" margin: 0 20px;margin-top: -20px;">
+       <ul fxLayoutGap="75%" >
+       <span style="  font-size: 17px;">
+        <strong style="color: white;">{{'Exporter en PHP'| translate }}</strong> 
+        <button mat-icon-button style="margin-left: 255px;" (click)="onNoClick()" >
+         <mat-icon  style="color: white;">cancel</mat-icon>
+         </button>
+       </span>
+       </ul>
+     </mat-card>
+     <button  (click)="create()" >{{php}}</button>
+
+     <mat-spinner style="margin-left:200px; margin-bottom: 20px;margin-top: 20px;"></mat-spinner>
+     <div style="margin-bottom: 10px;margin-left: 20px;"><mark style="border: palevioletred;
+         padding:3px;"> Patientez-vous SVP ! votre fichier PHP est en cours de télechargement.
+         </mark></div>

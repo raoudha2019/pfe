@@ -23,7 +23,7 @@ var DeleteRole:string='http://localhost:9000/Answer/deleteAnswer/';
 @Injectable({
     providedIn: 'root'
   })
-  export class QcmService {
+  export class AnswerService {
   // Answer:Answer [];
    constructor(public http: Http) {  
 }

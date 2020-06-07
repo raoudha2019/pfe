@@ -1,10 +1,6 @@
 import { Component, OnInit, Inject, ViewChild, ɵLOCALE_DATA, Optional } from '@angular/core';
-import {
-
-  MatSnackBarConfig,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-} from '@angular/material';
+import {MatSnackBarConfig,MatSnackBarHorizontalPosition,MatSnackBarVerticalPosition,} 
+from '@angular/material';
 import { MatDialogRef, MAT_DIALOG_DATA, MatOption, MatDialog, MatSnackBar, } from '@angular/material';
 import { Validators, FormControl, FormGroup, FormBuilder, NgModel } from '@angular/forms';
 import { ActionService } from '../../service/action.service';
@@ -22,11 +18,6 @@ export interface DialogData {
   id: number;
   permissions: Permission;
 }
-
-
-
-
-
 @Component({
   selector: 'app-role-add',
   templateUrl: './role-add.component.html',
@@ -37,7 +28,6 @@ export class RoleAddComponent implements OnInit {
   message: string = 'Snack Bar opened.';
   actionButtonLabel: string = 'Retry';
   action: boolean = true;
-
   messageForm: FormGroup;
   submitted = false;
   success = false;
@@ -47,26 +37,21 @@ export class RoleAddComponent implements OnInit {
   local_data:any;
   searchUserForm: FormGroup;
   actions: Action[];
-
   nomControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
-
   ]);
   PermissionControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
-
   ]);
   descriptionControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
-
   ]);
   actionControl = new FormControl('', [
     Validators.required,
     Validators.nullValidator,
-
   ]);
 
 
@@ -82,8 +67,6 @@ export class RoleAddComponent implements OnInit {
     {
       console.log(data);
       this.local_data = {...data};
-      
-
       this.messageForm = this.formBuilder.group({
         name: ['', Validators.required],
         description: ['', Validators.required],
@@ -135,7 +118,7 @@ export class RoleAddComponent implements OnInit {
       }
   })
   this.listperm=this.permissionsList;
-
+console.log(this.permissionsList,"rawdha"),
   //********** searchform ************ */
   this.searchUserForm = this.fb.group({
     userType: new FormControl('')
